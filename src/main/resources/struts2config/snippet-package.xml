@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- struts 2.0 package for Snippet domain-->
+    <package namespace="/snippet" name="snippet-package" extends="project-default">
+        <global-results>
+            <!--html page results-->
+            <result name="index">/WEB-INF/pages/snippet/index.jsp</result>
+            <result name="input">/WEB-INF/pages/snippet/edit.jsp</result>
+            <result name="edit">/WEB-INF/pages/snippet/edit.jsp</result>
+            <result name="show">/WEB-INF/pages/snippet/show.jsp</result>
+            <result name="show_json">/WEB-INF/pages/snippet/json/show_json.jsp</result>
+            <result name="post_create_json" type="dispatcher">/WEB-INF/pages/snippet/json/save_result.jsp</result>
+            <result name="post_update_json" type="dispatcher">/WEB-INF/pages/snippet/json/save_result.jsp</result>
+            <result name="post_create" type="redirect-action">
+                <param name="actionName">show?id=${model.id}</param>
+            </result>
+            <result name="post_update" type="redirect-action">
+                <param name="actionName">show?id=${model.id}</param>
+            </result>
+            <result name="post_delete" type="redirect-action">
+                <param name="actionName">index</param>
+            </result>
+        </global-results>
+        <!--index action-->
+        <action name="index" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="index"/>
+        <!--tag cloud action-->
+        <action name="tagCloud" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="tagCloud">
+            <result name="tag_cloud" type="dispatcher">/WEB-INF/pages/snippet/tag_cloud.jsp</result>
+        </action>
+        <!--show rss 2.0-->
+        <action name="showRss" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="showRss">
+            <result name="show_rss">/WEB-INF/pages/snippet/xml/rss20.jspx</result>
+        </action>
+        <!--query snippets-->
+        <action name="query" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="query">
+            <result name="index_json">/WEB-INF/pages/snippet/json/index.jsp</result>
+        </action>
+        <!--REST style wild card mapping, should be declared at the bottom-->
+        <action name="*" class="org.mvnsearch.snippet.web.actions.snippet.SnippetAction" method="{1}">
+            <result name="code_part" type="dispatcher">/WEB-INF/pages/snippet/code_part.jsp</result>
+            <result name="comment_list_json" type="dispatcher">/WEB-INF/pages/snippet/json/comment_list.jsp</result>
+            <result name="comment_added_json" type="dispatcher">/WEB-INF/pages/common/json_result.jsp</result>
+        </action>
+    </package>
+</struts>
