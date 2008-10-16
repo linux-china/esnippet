@@ -11,6 +11,7 @@ import org.mvnsearch.snippet.domain.manager.SnippetManager;
 import org.mvnsearch.snippet.domain.manager.SnippetService;
 import org.mvnsearch.snippet.domain.manager.CategoryManager;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springmodules.cache.annotations.Cacheable;
 
 import java.util.*;
 
@@ -109,6 +110,7 @@ public abstract class SnippetManagerImpl extends RichDomainManagerSupport<Snippe
      * @return snippet language
      */
     @SuppressWarnings({"ConstantConditions"})
+    @Cacheable(modelId = "snippet_languages")
     public Map<Integer, String> getAllSnippetLanguage() {
         return getAllMetaData("language");
     }
@@ -118,6 +120,7 @@ public abstract class SnippetManagerImpl extends RichDomainManagerSupport<Snippe
      *
      * @return snippet icon
      */
+    @Cacheable(modelId = "snippet_icons")
     public Map<Integer, String> getAllSnippetIcon() {
         return getAllMetaData("icon");
     }
