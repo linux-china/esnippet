@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="project-default" extends="struts-default">
+        <result-types>
+            <result-type name="screen" class="org.mvnsearch.ridd.struts2.ScreenDispatcherResult" default="true"/>
+        </result-types>
+        <interceptors>
+            <interceptor-stack name="projectStack">
+                <interceptor-ref name="paramsPrepareParamsStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="projectStack"/>
+        <global-results>
+            <result name="message" type="dispatcher">/WEB-INF/pages/common/message.jsp</result>
+        </global-results>
+    </package>
+    <!-- browser url: /config-browser/index.action -->
+    <include file="struts2config/category-package.xml"/>
+    <include file="struts2config/snippet-package.xml"/>
+    <include file="struts2config/portal-package.xml"/>
+    <include file="config-browser.xml"/>
+</struts>
