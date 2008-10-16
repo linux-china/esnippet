@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='GBK'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="sinnpet:src/test/dbscripts/xsd/dataset.xsd">
+    <snippets id="1" name="title1" category_id="3" mnemonic="t1" language="1" icon="1" author="jacky"
+            keywords="java google j2ee" url="http://www.intellij.org.cn" description="a demo for jdbc"
+            code="public class Demo{}" level="1"/>
+</dataset>

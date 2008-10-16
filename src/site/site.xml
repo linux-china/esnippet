@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GBK"?>
+<project name="Site for code snippet repository">
+    <bannerLeft>
+        <name>Site for snippet</name>
+        <src>logo.png</src>
+        <href>http://snippet.mvnsearch.org</href>
+    </bannerLeft>
+    <body>
+        <links>
+            <item name="mvnsearch" href="http://www.mvnsearch.org"/>
+        </links>
+        <menu name="Get Start">
+            <item name="Welcome" href="index.html"/>
+        </menu>
+        <menu name="Standard Reports" ref="reports"/>
+    </body>
+</project>
