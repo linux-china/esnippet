@@ -113,7 +113,7 @@ public class SnippetQueryAction extends RichDomainQueryAction<Snippet> {
             snippets = snippetManager.findSnippetsByTag(request.getParameter("tag"));
         } else { //query by word
             if (StringUtils.isEmpty(q)) { //RSS
-                snippets = snippetManager.findRecentAddedSnippets(32);
+                snippets = snippetManager.findRecentAddedSnippets(40);
             } else { //query by word
                 snippets = snippetManager.findSnippetsByWord(q);
             }
