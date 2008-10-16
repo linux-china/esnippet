@@ -232,8 +232,8 @@ Repository.StatusBarPanel = function(snippetTotal) {
     this.updateStatusBar = function(name, languageText, mnemonicText, authorText) {
         statusBar.setText(name);
         Ext.fly(language.getEl()).update(languageText);
-        Ext.fly(mnemonic.getEl()).update("Mnemonic: "+mnemonicText);
-        Ext.fly(author.getEl()).update("Author: "+authorText);
+        Ext.fly(mnemonic.getEl()).update("Mnemonic: " + mnemonicText);
+        Ext.fly(author.getEl()).update("Author: " + authorText);
     };
 };
 Ext.extend(Repository.StatusBarPanel, Ext.Panel);
@@ -303,6 +303,7 @@ Repository.ListPanel = function() {
             {name: 'id'},
             {name: 'name', type: 'string'},
             {name: 'author', type: 'string'},
+            {name: 'languageText', type: 'string'},
             {name: 'mnemonic', type: 'string'}
         ],
         autoLoad: true
@@ -321,7 +322,7 @@ Repository.ListPanel = function() {
     this.getSelectionModel().on("selectionchange", function(sm) {
         if (sm.getSelected()) {
             var snippet = sm.getSelected().data;
-            Layout.getStatusBarPanel().updateStatusBar(snippet.name, "", snippet.mnemonic, snippet.author);
+            Layout.getStatusBarPanel().updateStatusBar(snippet.name, snippet.languageText, snippet.mnemonic, snippet.author);
             //            Layout.getStatusBarPanel().updateStatusText("Mnemonic: " + snippet.mnemonic);
             Layout.getDetailTabPanel().refreshDetail(snippet.id);
         }
