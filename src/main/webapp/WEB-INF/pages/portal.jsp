@@ -95,7 +95,7 @@
                 <pre name="code" class="java:nocontrols">
                      public class Demo {
                       public static void main(String[] args) {
-                       System.out.println("Hi Jacky");
+                       System.out.println("Hi guest!");
                       }
                     }
                 </pre>
@@ -104,7 +104,7 @@
                 <pre name="code" class="java:nocontrols">
                      require 'net/http'
 
-                     puts "Hi Jacky";
+                     puts "Hi guest!";
                 </pre>
             </div>
         </div>
