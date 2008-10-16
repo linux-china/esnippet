@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+     xmlns:joda="http://www.joda.org/joda/time/tags">
+    <channel>
+        <title>Book Shelf</title>
+        <description>Recent Added Books</description>
+        <copyright>MvnSearch</copyright>
+        <generator>MvnSearch</generator>
+        <!--@elvariable id="snippets" type="java.util.List<org.mvnsearch.snippet.domain.Snippet>"-->
+        <c:forEach var="snippet" items="${snippets}">
+            <item>
+                <title><c:out value="${snippet.name}" escapeXml="true"/></title>
+                <link>http://book.mvnsearch.org/index.action?snippet=${snippet.id}</link>
+                <description>
+                    &lt;![CDATA[
+                    ${snippet.description}:
+                    ${snippet.code}
+                    ]]&gt;
+                </description>
+                <pubDate><joda:format value="${snippet.createdAt}" style="FF"/></pubDate>
+            </item>
+        </c:forEach>
+    </channel>
+</rss>

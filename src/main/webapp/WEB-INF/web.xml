@@ -1,0 +1,76 @@
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>sinnpet</display-name>
+    <!-- Context Configuration locations for Spring XML files -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:/applicationContext.xml,classpath:/applicationContext-domains.xml,classpath:/applicationContext-acegi-security.xml
+        </param-value>
+    </context-param>
+
+    <!--Acegi filter declaration-->
+    <filter>
+        <filter-name>Acegi Filter Chain Proxy</filter-name>
+        <filter-class>org.acegisecurity.util.FilterToBeanProxy</filter-class>
+        <init-param>
+            <param-name>targetClass</param-name>
+            <param-value>org.acegisecurity.util.FilterChainProxy</param-value>
+        </init-param>
+    </filter>
+
+    <!--Struts 2.0 dispatcher filter-->
+    <filter>
+        <filter-name>struts</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+    </filter>
+
+    <!--filter pattern for Acegi-->
+    <!-- <filter-mapping>
+        <filter-name>Acegi Filter Chain Proxy</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+
+    <!--filter pattern for Struts 2.0-->
+    <filter-mapping>
+        <filter-name>struts</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!--spring context loader listener-->
+    <listener>
+        <listener-class>org.mvnsearch.ridd.spring.SpringContextLoaderListener</listener-class>
+    </listener>
+     <!--remoting service from spring-->
+    <servlet>
+        <servlet-name>remoting</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>remoting</servlet-name>
+        <url-pattern>/remoting/*</url-pattern>
+    </servlet-mapping>
+
+    <!--session configuration-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!--jsp configuration-->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
