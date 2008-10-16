@@ -17,6 +17,7 @@
     <!--snippet domain-->
     <bean id="snippet" class="org.mvnsearch.snippet.domain.Snippet" scope="prototype">
         <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="snippetManager" ref="snippetManager"/>
     </bean>
     <bean id="snippetManager" class="org.mvnsearch.snippet.domain.manager.impl.SnippetManagerImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
