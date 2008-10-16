@@ -27,6 +27,8 @@
     <!--cache settings-->
     <cache:annotations>
         <cache:caching id="root_categories" refreshPeriod="1800"/>
+        <cache:caching id="snippet_languages" refreshPeriod="1800"/>
+        <cache:caching id="snippet_icons" refreshPeriod="1800"/>
     </cache:annotations>
 
     <!--database settings-->
