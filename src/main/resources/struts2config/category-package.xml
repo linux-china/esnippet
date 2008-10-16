@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- struts 2.0 package for Category domain-->
+    <package namespace="/category" name="category-package" extends="project-default">
+        <global-results>
+            <!--html page results-->
+            <result name="index">/WEB-INF/pages/category/index.jsp</result>
+            <result name="input">/WEB-INF/pages/category/edit.jsp</result>
+            <result name="edit">/WEB-INF/pages/category/edit.jsp</result>
+            <result name="show">/WEB-INF/pages/category/show.jsp</result>
+            <result name="post_create" type="redirect-action">
+                <param name="actionName">show?id=${model.id}</param>
+            </result>
+            <result name="post_update" type="redirect-action">
+                <param name="actionName">show?id=${model.id}</param>
+            </result>
+            <result name="post_delete" type="redirect-action">
+                <param name="actionName">index</param>
+            </result>
+        </global-results>
+        <!--index action-->
+        <action name="index" class="org.mvnsearch.snippet.web.actions.category.CategoryQueryAction" method="index">
+            <result name="index_json" type="dispatcher">/WEB-INF/pages/category/json/index.jsp</result>
+        </action>
+        <action name="showAll" class="org.mvnsearch.snippet.web.actions.category.CategoryQueryAction" method="showAll">
+        </action>
+        <!--REST style wild card mapping, should be declared at the bottom-->
+        <action name="*" class="org.mvnsearch.snippet.web.actions.category.CategoryAction" method="{1}">
+            <result name="snippet_list">/WEB-INF/pages/snippet/index.jsp</result>
+            <result name="snippet_list_json" type="dispatcher">/WEB-INF/pages/snippet/json/index.jsp</result>
+        </action>
+    </package>
+</struts>
