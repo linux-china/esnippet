@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- struts 2.0 package for Book domain-->
+    <package namespace="/" name="portal-package" extends="project-default">
+        <global-results>
+            <!--html page results-->
+            <result name="portal" type="dispatcher">/WEB-INF/pages/portal.jsp</result>
+        </global-results>
+        <!--index action-->
+        <action name="index" class="org.mvnsearch.snippet.web.actions.PortalAction" method="execute">
+        </action>
+        <action name="metaData" class="org.mvnsearch.snippet.web.actions.MetaDataAction" method="execute">
+            <result name="data_list_json" type="dispatcher">/WEB-INF/pages/data_list_json.jsp</result>
+        </action>
+
+    </package>
+</struts>
