@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.joda.time.DateTime;
 import org.mvnsearch.ridd.domain.RichDomainSupport;
 import org.mvnsearch.snippet.domain.extra.Comment;
+import org.mvnsearch.snippet.domain.manager.SnippetManager;
 
 import javax.persistence.*;
 import java.util.List;
@@ -55,6 +56,17 @@ public class Snippet extends RichDomainSupport {
     @Column(name = "modified_at")
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     private DateTime modifiedAt;
+    @Transient
+    private SnippetManager snippetManager;
+
+    /**
+     * inject snippet manager
+     *
+     * @param snippetManager snippet manager bean
+     */
+    public void setSnippetManager(SnippetManager snippetManager) {
+        this.snippetManager = snippetManager;
+    }
 
     /**
      * get id for entity object
