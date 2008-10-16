@@ -117,7 +117,7 @@
     <div id="header:logo">
         <img src="/statics/images/logo_small_w.gif" alt="Code Snippet Repository" align="left"/>
         &nbsp;&nbsp;
-        <a href="#">
+        <a href="http://docs.google.com/View?docid=dc73pj2h_79dbmmt4cx&hl=en_GB" target="_blank">
             <img src="/statics/images/help.png" alt="Help" title="Help"/>
         </a>
         <a href="http://book.mvnsearch.org" target="_blank">
