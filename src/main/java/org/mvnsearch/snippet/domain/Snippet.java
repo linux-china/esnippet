@@ -177,6 +177,18 @@ public class Snippet extends RichDomainSupport {
     }
 
     /**
+     * get language text
+     *
+     * @return language text
+     */
+    public String getLanguageText() {
+        if (language != null) {
+            return snippetManager.getAllSnippetLanguage().get(this.language);
+        }
+        return null;
+    }
+
+    /**
      * get icon type
      *
      * @return icon type
