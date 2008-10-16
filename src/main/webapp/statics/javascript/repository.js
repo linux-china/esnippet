@@ -186,13 +186,14 @@ Ext.extend(Repository.MenuPanel, Ext.Panel);
  * @param snippetTotal  snippet total
  */
 Repository.StatusBarPanel = function(snippetTotal) {
+    var language = new Ext.Toolbar.TextItem("");
+    var mnemonic = new Ext.Toolbar.TextItem('');
+    var author = new Ext.Toolbar.TextItem('');
     var snippetCount = new Ext.Toolbar.TextItem('Snippets: ' + snippetTotal);
-    var userCount = new Ext.Toolbar.TextItem('Users: 50');
-    var clock = new Ext.Toolbar.TextItem('');
 
     var statusBar = new Ext.StatusBar({
         defaultText: 'Code Snippet Repository',
-        items: [clock, ' ', userCount, ' ', snippetCount, ' ']
+        items: [language, ' ' ,mnemonic, ' ', author,' ', snippetCount]
     });
     Repository.StatusBarPanel.superclass.constructor.call(this, {
         id:"repository:statusBarPanel",
@@ -203,10 +204,12 @@ Repository.StatusBarPanel = function(snippetTotal) {
         listeners: {
             'render': {
                 fn: function() {
+                    Ext.fly(language.getEl().parentNode).addClass('x-status-text-panel');
+                    Ext.fly(mnemonic.getEl().parentNode).addClass('x-status-text-panel');
+                    Ext.fly(author.getEl().parentNode).addClass('x-status-text-panel');
                     Ext.fly(snippetCount.getEl().parentNode).addClass('x-status-text-panel');
-                    Ext.fly(userCount.getEl().parentNode).addClass('x-status-text-panel');
-                    Ext.fly(clock.getEl().parentNode).addClass('x-status-text-panel');
-                    Ext.fly(clock.getEl()).update(new Date().format('F j, Y'));
+                    //                    Ext.fly(clock.getEl().parentNode).addClass('x-status-text-panel');
+                    Ext.fly(mnemonic.getEl()).update(new Date().format('F j, Y'));
                 }
             }
         }
@@ -217,6 +220,20 @@ Repository.StatusBarPanel = function(snippetTotal) {
      */
     this.updateStatusText = function(statusText) {
         statusBar.setText(statusText);
+    };
+
+    /**
+     * update status bar
+     * @param name  name text
+     * @param languageText  language
+     * @param mnemonicText  mnemonic
+     * @param authorText author
+     */
+    this.updateStatusBar = function(name, languageText, mnemonicText, authorText) {
+        statusBar.setText(name);
+        Ext.fly(language.getEl()).update(languageText);
+        Ext.fly(mnemonic.getEl()).update("Mnemonic: "+mnemonicText);
+        Ext.fly(author.getEl()).update("Author: "+authorText);
     };
 };
 Ext.extend(Repository.StatusBarPanel, Ext.Panel);
@@ -285,6 +302,7 @@ Repository.ListPanel = function() {
         fields: [
             {name: 'id'},
             {name: 'name', type: 'string'},
+            {name: 'author', type: 'string'},
             {name: 'mnemonic', type: 'string'}
         ],
         autoLoad: true
@@ -303,7 +321,8 @@ Repository.ListPanel = function() {
     this.getSelectionModel().on("selectionchange", function(sm) {
         if (sm.getSelected()) {
             var snippet = sm.getSelected().data;
-            Layout.getStatusBarPanel().updateStatusText("Mnemonic: " + snippet.mnemonic);
+            Layout.getStatusBarPanel().updateStatusBar(snippet.name, "", snippet.mnemonic, snippet.author);
+            //            Layout.getStatusBarPanel().updateStatusText("Mnemonic: " + snippet.mnemonic);
             Layout.getDetailTabPanel().refreshDetail(snippet.id);
         }
     });
