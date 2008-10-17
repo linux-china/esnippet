@@ -89,7 +89,7 @@
                     find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with others. </p>
 
                 <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments,
-                    modify code and to make the snippet excellent. </p>
+                    modify code and make the snippet excellent. </p>
 
                 <p/>
 
