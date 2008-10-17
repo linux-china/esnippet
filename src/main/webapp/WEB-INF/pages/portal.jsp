@@ -82,20 +82,27 @@
     <div id="repository:detailTabPanel">
         <div class="x-tab" id="detailCode" title="Code">
             <div id="snippetDetailCodeDiv">
-                What is snippet repository? <br/>
-                You have write a lot of code, and only 1% code can be used again by Ctrl+C and Ctrl+V. You search them in the directory and get the file and
-                find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with others. <br/>
-                Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments, modify code and to
-                make the snippet excellent. <br/>
-                <ul> Change list:
+                <h2>What is snippet repository? </h2>
+
+                <p>&nbsp;&nbsp;You have write a lot of code, and only 1% code can be used again by Ctrl+C and Ctrl+V. You search them in the directory and get
+                    the file and
+                    find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with others. </p>
+
+                <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments,
+                    modify code and
+                    to make the snippet excellent. </p>
+                <br/>
+
+                <ul><h2>Change list: </h2>
                     <li>
-                        eSnippet Pro plugin for IntelliJ IDEA released, please visit <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
+                        &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA released, please visit <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
                         to download and screen shot as following: <br/>
-                        <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin" align="left"/>
+                        <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin" align="center"/>
                     </li>
                 </ul>
-                <br/><br/>
-                Welcome:
+                <p/><p/>
+
+                <h2>Welcome:</h2>
                 <pre name="code" class="java:nocontrols">
                      public class SnippetRepository {
                       public static void main(String[] args) {
