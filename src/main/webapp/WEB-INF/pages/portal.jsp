@@ -96,9 +96,9 @@
                 <h2>Change list: </h2>
                 <ul>
                     <li>
-                        &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA released, please visit
+                        &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA has been released. Please visit
                         <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
-                        to download and screen shot as following: <br/>
+                        to download. Screen shot as following: <br/>
                         <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin" align="center"/>
                     </li>
                 </ul>
