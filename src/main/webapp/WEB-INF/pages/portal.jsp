@@ -85,7 +85,7 @@
                 <h2>What is snippet repository? </h2>
 
                 <p>&nbsp;&nbsp;You have written a lot of code, and only 1% code can be used again by Ctrl+C and Ctrl+V. You search them in the directory and get
-                    the file and find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with
+                    the file and find them, then copy the code and put them in the editor. It is very low efficient and all these code can not be shared with
                     others. </p>
 
                 <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments,
