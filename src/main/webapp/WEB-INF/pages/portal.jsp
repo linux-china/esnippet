@@ -85,8 +85,8 @@
                 <h2>What is snippet repository? </h2>
 
                 <p>&nbsp;&nbsp;You have written a lot of code, and only 1% code can be used again by Ctrl+C and Ctrl+V. You search them in the directory and get
-                    the file and
-                    find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with others. </p>
+                    the file and find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with
+                    others. </p>
 
                 <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments,
                     modify code and make the snippet excellent. </p>
@@ -98,7 +98,7 @@
                     <li>
                         &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA has been released. Please visit
                         <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
-                        to download. Screen shot as following: <br/>
+                        to download it. Screen shot as following: <br/>
                         <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin" align="center"/>
                     </li>
                 </ul>
