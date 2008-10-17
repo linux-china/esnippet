@@ -89,20 +89,24 @@
                     find them, then copy the code and put them in the editor. It is very low efficient and all these code can be shared with others. </p>
 
                 <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments,
-                    modify code and
-                    to make the snippet excellent. </p>
-                <br/>
+                    modify code and to make the snippet excellent. </p>
 
-                <ul><h2>Change list: </h2>
+                <p/>
+
+                <h2>Change list: </h2>
+                <ul>
                     <li>
-                        &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA released, please visit <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
+                        &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA released, please visit
+                        <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
                         to download and screen shot as following: <br/>
                         <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin" align="center"/>
                     </li>
                 </ul>
-                <p/><p/>
+                <p/>
 
-                <h2>Welcome:</h2>
+                <p/>
+
+                <h2>Code:</h2>
                 <pre name="code" class="java:nocontrols">
                      public class SnippetRepository {
                       public static void main(String[] args) {
