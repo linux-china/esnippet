@@ -95,8 +95,12 @@
 
                 <h2>Change list: </h2>
                 <ul>
+                     <li>
+                        &nbsp;&nbsp; 1. eSnippet was hosted in Google Code and adopt GPL license, and the home site is
+                         <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
+                    </li>
                     <li>
-                        &nbsp;&nbsp; 1. eSnippet Pro plugin for IntelliJ IDEA has been released. Please visit
+                        &nbsp;&nbsp; 2. eSnippet Pro plugin for IntelliJ IDEA has been released. Please visit
                         <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
                         to download it. Screen shot as following: <br/>
                         <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin" align="center"/>
