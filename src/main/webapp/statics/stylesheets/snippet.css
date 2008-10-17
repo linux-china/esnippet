@@ -31,6 +31,34 @@
     clear: none;
 }
 
+#snippetDetailCodeDiv {
+	padding:10px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+#snippetDetailCodeDiv h2 {
+	margin-bottom:20px;
+	font-size:16px;
+}
+#snippetDetailSpecification {
+	float:left;
+	margin-bottom:20px;
+}
+#snippetDetailSpecification li {
+	clear:both;
+	height:20px;
+	line-height:20px;
+}
+#snippetDetailSpecification li .title {
+	float:left;
+	width:90px;
+	font-weight:bold;
+}
+#snippetDetailCodeDiv p {
+	clear:both; margin:10px 0;
+}
+
+
 .tag {
     font-family: Arial, 'Luxi Sans', Helvetica, Impact;
 }
