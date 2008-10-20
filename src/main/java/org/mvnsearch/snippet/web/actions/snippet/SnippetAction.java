@@ -163,7 +163,7 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
      */
     public String showPart() {
         String part = request.getParameter("part");
-        String result = "message";
+        String result = "plain_text";
         String content = "";
         if ("code".equals(part)) {
             content = snippet.getCode();
