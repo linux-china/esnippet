@@ -14,7 +14,7 @@
     <json:property name="keywords" value="${snippet.keywords}"/>
     <json:property name="url" value="${snippet.url}"/>
     <json:property name="type" value="${snippet.type}"/>
-    <json:property name="description" value="${snippet.description}"/>
+    <json:property name="description" value="${snippet.description}" escapeXml="false"/>
     <json:property name="code" value="${snippet.code}" escapeXml="false"/>
     <json:property name="example" value="${snippet.example}" escapeXml="false"/>
 </json:object>
