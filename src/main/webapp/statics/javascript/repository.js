@@ -510,6 +510,7 @@ Repository.SnippetFormWindow = function() {
                             id: 'snippet_hidden_id'
                         },
                         {
+                            xtype:'htmleditor',
                             fieldLabel: 'Description',
                             hideLabel:true,
                             name: 'description',
