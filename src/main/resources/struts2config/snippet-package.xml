@@ -41,6 +41,7 @@
         <!--REST style wild card mapping, should be declared at the bottom-->
         <action name="*" class="org.mvnsearch.snippet.web.actions.snippet.SnippetAction" method="{1}">
             <result name="code_part" type="dispatcher">/WEB-INF/pages/snippet/code_part.jsp</result>
+            <result name="plain_text" type="dispatcher">/WEB-INF/pages/common/plain_text.jsp</result>
             <result name="comment_list_json" type="dispatcher">/WEB-INF/pages/snippet/json/comment_list.jsp</result>
             <result name="comment_added_json" type="dispatcher">/WEB-INF/pages/common/json_result.jsp</result>
         </action>
