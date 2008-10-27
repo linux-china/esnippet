@@ -4,6 +4,7 @@
 <json:array var="snippet" items="${snippets}">
     <json:object>
         <json:property name="id" value="${snippet.id}"/>
+        <json:property name="icon" value="${snippet.icon}"/>
         <json:property name="name" value="${snippet.name}"/>
         <json:property name="mnemonic" value="${snippet.mnemonic}"/>
         <json:property name="author" value="${snippet.author}"/>
