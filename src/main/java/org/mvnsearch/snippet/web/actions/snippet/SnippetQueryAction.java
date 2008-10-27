@@ -99,10 +99,11 @@ public class SnippetQueryAction extends RichDomainQueryAction<Snippet> {
      * @return list result
      */
     public String query() {
+        request.setAttribute("icons", snippetManager.getAllSnippetIcon());
         if (StringUtils.isNotEmpty(request.getParameter("category"))) { //list snippets under category
             int categoryId = Integer.valueOf(request.getParameter("category"));
             if (categoryId == -1) { //recent added snippets
-               snippets = snippetManager.findRecentAddedSnippets(40);
+                snippets = snippetManager.findRecentAddedSnippets(40);
             } else {
                 Category category = categoryManager.findById(categoryId);
                 if (category != null) {
