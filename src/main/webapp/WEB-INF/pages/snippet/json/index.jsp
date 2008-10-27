@@ -1,4 +1,4 @@
-<%@page contentType="text/html" %>
+<%@page contentType="text/plain;charset=utf-8" %>
 <%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <%--@elvariable id="snippets" type="java.util.List<org.mvnsearch.snippet.domain.Snippet>"--%>
 <json:array var="snippet" items="${snippets}">
