@@ -6,6 +6,16 @@ var win;  //glabal win
 function syntaxHighlighter() {
     dp.SyntaxHighlighter.HighlightAll('code');
 }
+
+/**
+ * display icon
+ * @param name icon name
+ */
+function displayIcon(name) {
+    if(name == null || name == '')  name="text.png";
+   return "<img src='/statics/images/category/"+name+"'/>";
+}
+
 //layout global object
 var Layout = {
     /**
@@ -301,6 +311,7 @@ Repository.ListPanel = function() {
         id: 'id',
         fields: [
             {name: 'id'},
+            {name: 'icon', type: 'string'},
             {name: 'name', type: 'string'},
             {name: 'author', type: 'string'},
             {name: 'languageText', type: 'string'},
@@ -310,6 +321,7 @@ Repository.ListPanel = function() {
     });
     this.columns = [
         new Ext.grid.RowNumberer(),
+        {header:'',width:16, dataIndex:'icon',sortable:false,renderer:displayIcon},
         {header:'Name',width:280, dataIndex:'name',sortable:true}
     ];
     Repository.ListPanel.superclass.constructor.call(this, {
