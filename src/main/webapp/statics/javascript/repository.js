@@ -321,7 +321,7 @@ Repository.ListPanel = function() {
     });
     this.columns = [
         new Ext.grid.RowNumberer(),
-        {header:'',width:16, dataIndex:'icon',sortable:false,renderer:displayIcon},
+        {header:'',width:24, dataIndex:'icon',sortable:false,renderer:displayIcon},
         {header:'Name',width:280, dataIndex:'name',sortable:true}
     ];
     Repository.ListPanel.superclass.constructor.call(this, {
