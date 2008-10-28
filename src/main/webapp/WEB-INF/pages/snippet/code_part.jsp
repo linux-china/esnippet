@@ -20,6 +20,6 @@
 <p/>
 
 <h2>Code: </h2>
-<pre name="code" class="${languages[snippet.language]}:nocontrols">
+<pre name="code" class="${languages[snippet.language]}">
 <c:out value="${snippet.code}" escapeXml="true"/>
 </pre>
