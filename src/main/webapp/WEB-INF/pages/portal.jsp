@@ -148,6 +148,7 @@
 <div id="repository:statusBarPanel"/>
 <script type="text/javascript">
     syntaxHighlighter();
+    Layout.getSnippetFormWindow();
 </script>
 </body>
 </html>
