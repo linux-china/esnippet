@@ -138,7 +138,7 @@
         <a href="http://plugins.intellij.net/plugin/?id=3675" target="_blank">
             <img src="/statics/images/category/intellij.png" alt="IntelliJ IDEA plugin" title="IntelliJ IDEA plugin"/>
         </a>
-        <a href="http://plugins.intellij.net/plugin/?id=3675" target="_blank">
+        <a href="http://code.google.com/p/esnippet" target="_blank">
             <img src="/statics/images/source.png" alt="Source Code" title="Source Code"/>
         </a>
     </div>
