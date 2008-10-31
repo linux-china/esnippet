@@ -293,7 +293,7 @@ Repository.HeaderPanel = function(listPanel) {
         layout: "border",
         border: false,
         height:50,
-        items:[ searchPanel, { region: 'west',  border: false, contentEl: 'header:logo', width:300},
+        items:[ searchPanel, { region: 'west',  border: false, contentEl: 'header:logo', width:320},
             { region: 'center',  border: false, contentEl: 'header:welcome'}]
     });
 };
