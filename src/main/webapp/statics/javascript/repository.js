@@ -495,9 +495,12 @@ Repository.SnippetFormWindow = function() {
                     triggerAction: 'all',
                     anchor:'95%'
                 },{
-                    xtype:'textfield',
-                    fieldLabel: 'Type(1:File, 0:Fragment)',
+                    xtype:'combo',
+                    fieldLabel: 'Type',
+                    store:[['1','File'],['0','Fragment']],
                     name: 'type',
+                    hiddenName:'type',
+                    triggerAction: 'all',
                     allowBlank:false,
                     anchor:'95%'
                 }]
