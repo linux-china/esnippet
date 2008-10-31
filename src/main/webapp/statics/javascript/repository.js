@@ -419,6 +419,7 @@ Repository.SnippetFormWindow = function() {
         labelAlign: 'top',
         bodyStyle:'padding:5px',
         width: 600,
+        deferredRender:false,
         items: [{
             layout:'column',
             border:false,
