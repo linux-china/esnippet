@@ -12,8 +12,8 @@ function syntaxHighlighter() {
  * @param name icon name
  */
 function displayIcon(name) {
-    if(name == null || name == '')  name="text.png";
-   return "<img src='/statics/images/category/"+name+"'/>";
+    if (name == null || name == '')  name = "text.png";
+    return "<img src='/statics/images/category/" + name + "'/>";
 }
 
 //layout global object
@@ -408,6 +408,13 @@ Repository.SnippetFormWindow = function() {
         autoLoad:true
     });
 
+    var categoryStore = new Ext.data.JsonStore({
+        url:'/category/categoryStore.json',
+        fields: ["id","name","icon"],
+        id:'id',
+        autoLoad:true
+    });
+
     var formPanel = new Ext.FormPanel({
         labelAlign: 'top',
         bodyStyle:'padding:5px',
@@ -437,10 +444,21 @@ Repository.SnippetFormWindow = function() {
                 layout: 'form',
                 border:false,
                 items: [{
-                    xtype:'textfield',
-                    fieldLabel: 'Category ID',
+                    xtype:'combo',
+                    fieldLabel: 'Category',
                     name: 'categoryId',
-                    id:'categoryId',
+                    hiddenName:'categoryId',
+                    store: categoryStore,
+                    tpl:new Ext.XTemplate(
+                            '<tpl for=".">',
+                           '<div class="x-combo-list-item"><img src="/statics/images/category/{icon}">&nbsp;{name}</div>',
+                            '</tpl>'
+                            ),
+                    mode:'local',
+                    forceSelection:true,
+                    displayField:'name',
+                    valueField:'id',
+                    triggerAction: 'all',
                     anchor:'95%',
                     allowBlank:false
                 },{
