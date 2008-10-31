@@ -95,9 +95,9 @@
 
                 <h2>Change list: </h2>
                 <ul>
-                     <li>
+                    <li>
                         &nbsp;&nbsp; 1. eSnippet was hosted in Google Code and adopt GPL license, and the home site is
-                         <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
+                        <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
                     </li>
                     <li>
                         &nbsp;&nbsp; 2. eSnippet Pro plugin for IntelliJ IDEA has been released. Please visit
@@ -134,6 +134,12 @@
         </a>
         <a href="http://book.mvnsearch.org" target="_blank">
             <img src="/statics/images/book.png" alt="Book Shelf" title="Book Shelf"/>
+        </a>
+        <a href="http://plugins.intellij.net/plugin/?id=3675" target="_blank">
+            <img src="/statics/images/category/intellij.png" alt="IntelliJ IDEA plugin" title="IntelliJ IDEA plugin"/>
+        </a>
+        <a href="http://plugins.intellij.net/plugin/?id=3675" target="_blank">
+            <img src="/statics/images/source.png" alt="Source Code" title="Source Code"/>
         </a>
     </div>
     <div id="header:welcome">
