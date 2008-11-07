@@ -1,5 +1,7 @@
 package org.mvnsearch.snippet;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.unitils.UnitilsJUnit3;
 import org.unitils.spring.annotation.SpringApplicationContext;
 
@@ -8,7 +10,7 @@ import org.unitils.spring.annotation.SpringApplicationContext;
  *
  * @author linux_china@hotmail.com
  */
-@SpringApplicationContext({"classpath:/applicationContext.xml","classpath:/applicationContext-domains.xml", "classpath:/applicationContext-test.xml"})
+@SpringApplicationContext({"classpath:/applicationContext.xml", "classpath:/applicationContext-domains.xml", "classpath:/applicationContext-test.xml"})
 public class AppBaseTest extends UnitilsJUnit3 {
     /**
      * void test
@@ -16,4 +18,5 @@ public class AppBaseTest extends UnitilsJUnit3 {
     public void testVoid() {
         assertTrue(true);
     }
+
 }
