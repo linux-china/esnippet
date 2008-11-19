@@ -4,7 +4,7 @@
     <title>Code Snippet Repository Beta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="description" content="Code Snippet Repository: free code snippet repository "/>
-    <link rel="stylesheet" type="text/css" href="/statics/javascript/extjs/resources/css/ext-all.css"/>
+    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="/statics/javascript/syntaxhighlighter/syntax-highlighter.css"/>
     <link rel="stylesheet" type="text/css" href="/statics/stylesheets/snippet.css"/>
     <link rel="alternate" type="application/rss+xml" title="Code Snippet Reposity RSS 2.0" href="/snippet/showRss.action"/>
@@ -12,12 +12,12 @@
     <script type="text/javascript" src="/statics/javascript/syntaxhighlighter/shBrushLanguages.js"></script>
     <script type="text/javascript" src="/statics/javascript/yui/utilities.js"></script>
     <script type="text/javascript" src="/statics/javascript/extjs/ext-yui-adapter.js"></script>
-    <script type="text/javascript" src="/statics/javascript/extjs/ext-all.js"></script>
+   <script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2/ext-all.js"></script>  
     <script type="text/javascript" src="/statics/javascript/repository.js"></script>
 
     <script type="text/javascript">
         //ExtJS settings
-        Ext.BLANK_IMAGE_URL = '/statics/javascript/extjs/resources/images/default/s.gif';
+        Ext.BLANK_IMAGE_URL = 'http://extjs.cachefly.net/ext-2.2/resources/images/default/s.gif';
         Ext.QuickTips.init();
         Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
     </script>
