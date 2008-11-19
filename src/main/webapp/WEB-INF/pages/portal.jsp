@@ -11,8 +11,7 @@
     <script type="text/javascript" src="/statics/javascript/syntaxhighlighter/shCore.js"></script>
     <script type="text/javascript" src="/statics/javascript/syntaxhighlighter/shBrushLanguages.js"></script>
     <script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
-    <script type="text/javascript" src="/statics/javascript/extjs/ext-yui-adapter.js"></script>
-   <script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2/ext-all.js"></script>  
+    <script type="text/javascript" src="http://extjs.cachefly.net/builds/ext-cdn-25.js"></script> 
     <script type="text/javascript" src="/statics/javascript/repository.js"></script>
 
     <script type="text/javascript">
