@@ -3,7 +3,6 @@ package org.mvnsearch.snippet.domain.manager.impl;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.MatchMode;
 import org.joda.time.DateTime;
 import org.mvnsearch.snippet.domain.Category;
 import org.mvnsearch.snippet.domain.Snippet;
@@ -67,7 +66,7 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
      */
     public String renderTemplate(String mnemonic, String packageName, String fileName, String author) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Snippet.class);
-        criteria.add(Restrictions.like("mnemonic", mnemonic, MatchMode.END));
+        criteria.add(Restrictions.eq("mnemonic", mnemonic));
         List<Snippet> snippets = getHibernateTemplate().findByCriteria(criteria);
         if (!snippets.isEmpty()) {
             Snippet snippet = snippets.get(0);
