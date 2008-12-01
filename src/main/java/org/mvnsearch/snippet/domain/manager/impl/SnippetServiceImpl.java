@@ -1,22 +1,23 @@
 package org.mvnsearch.snippet.domain.manager.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.mvnsearch.snippet.domain.Snippet;
+import org.hibernate.criterion.MatchMode;
+import org.joda.time.DateTime;
 import org.mvnsearch.snippet.domain.Category;
+import org.mvnsearch.snippet.domain.Snippet;
 import org.mvnsearch.snippet.domain.extra.Comment;
 import org.mvnsearch.snippet.domain.manager.CategoryManager;
 import org.mvnsearch.snippet.domain.manager.SnippetManager;
 import org.mvnsearch.snippet.domain.manager.SnippetService;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.joda.time.DateTime;
-import org.apache.commons.lang.StringUtils;
 
-import java.util.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 
 /**
  * snippet service implement
@@ -66,13 +67,13 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
      */
     public String renderTemplate(String mnemonic, String packageName, String fileName, String author) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Snippet.class);
-        criteria.add(Restrictions.eq("mnemonic", mnemonic));
+        criteria.add(Restrictions.like("mnemonic", mnemonic, MatchMode.END));
         List<Snippet> snippets = getHibernateTemplate().findByCriteria(criteria);
         if (!snippets.isEmpty()) {
             Snippet snippet = snippets.get(0);
-            String name = fileName;
-            if (name.indexOf(".") != -1) {
-                name = name.substring(0, name.indexOf("."));
+            String className = fileName;
+            if (StringUtils.isNotEmpty(className) && className.indexOf(".") != -1) {
+                className = className.substring(0, className.indexOf("."));
             }
             String code = snippet.getCode();
             if (StringUtils.isNotEmpty(author)) {
@@ -81,8 +82,10 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
             if (StringUtils.isNotEmpty(packageName)) {
                 code = code.replace("${PACKAGE_NAME}", packageName);
             }
-            code = code.replace("${NAME}", name);
-            code = code.replace("${FILE_NAME}", fileName);
+            if (StringUtils.isNotEmpty(fileName)) {
+                code = code.replace("${NAME}", className);
+                code = code.replace("${FILE_NAME}", fileName);
+            }
             //date info replace
             DateTime now = new DateTime();
             code = code.replace("${YEAR}", String.valueOf(now.getYear()));
