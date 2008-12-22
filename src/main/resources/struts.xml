@@ -16,7 +16,11 @@
         <default-interceptor-ref name="projectStack"/>
         <global-results>
             <result name="message" type="dispatcher">/WEB-INF/pages/common/message.jsp</result>
+            <result name="exception" type="dispatcher">/WEB-INF/pages/common/exception.jsp</result>
         </global-results>
+          <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+        </global-exception-mappings>
     </package>
     <!-- browser url: /config-browser/index.action -->
     <include file="struts2config/category-package.xml"/>
