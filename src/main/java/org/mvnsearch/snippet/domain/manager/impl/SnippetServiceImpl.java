@@ -136,6 +136,22 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
         return mnemonicList;
     }
 
+
+    /**
+     * find mnemonic list according to prefix
+     *
+     * @param prefix prefix
+     * @return mnemonic list, max size is 100
+     */
+    public List<String> findMnemonicListWithName(String prefix) {
+        List<String> mnemonicList = new ArrayList<String>();
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select mnemonic,name from snippets where mnemonic like '" + prefix + "%'");
+        for (Map<String, Object> map : maps) {
+            mnemonicList.add(map.get("mnemonic") + ":" + map.get("name"));
+        }
+        return mnemonicList;
+    }
+
     /**
      * find snipepts by mnemonic
      *
