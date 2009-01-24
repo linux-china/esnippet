@@ -1,7 +1,7 @@
 package org.mvnsearch.snippet;
 
 import org.unitils.UnitilsJUnit3;
-import org.unitils.hibernate.HibernateUnitils;
+import org.unitils.orm.hibernate.HibernateUnitils;
 
 /**
  * Some util method for Unitils, such as database schema rebuid and Hibernate mapping check
