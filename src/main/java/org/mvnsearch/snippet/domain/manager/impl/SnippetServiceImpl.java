@@ -46,7 +46,7 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
 
     /**
      * set language
-     * @param language
+     * @param language language
      */
     public void setLanguage(int language) {
         this.language = language;
