@@ -70,7 +70,7 @@ var Layout = {
  */
 Repository.CodePanel = function(config) {
     Ext.apply(this, config);
-    this.on("show", syntaxHighlighter);
+    this.on("show", function () {  sh.highlight(); });
 };
 Ext.extend(Repository.CodePanel, Ext.Panel);
 
