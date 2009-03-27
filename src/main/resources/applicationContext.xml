@@ -37,6 +37,7 @@
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.userName}"/>
         <property name="password" value="${database.password}"/>
+        <property name="initialSize" value="3"/>
     </bean>
     <!--simple jdbc template-->
     <bean id="simpleJdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
