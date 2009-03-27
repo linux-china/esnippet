@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--@elvariable id="languages" type="java.util.Map<Integer, String>"--%>
 <%--@elvariable id="snippet" type="org.mvnsearch.snippet.domain.Snippet"--%>
 <h2>Basic Information:</h2>
@@ -20,6 +21,6 @@
 <p/>
 
 <h2>Code: </h2>
-<pre name="code" class="${languages[snippet.language]}">
+<pre name="code" class="brush: ${fn:toLowerCase(languages[snippet.language])}">
 <c:out value="${snippet.code}" escapeXml="true"/>
 </pre>
