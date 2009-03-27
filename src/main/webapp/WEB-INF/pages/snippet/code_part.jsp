@@ -6,6 +6,7 @@
 
 <ul id="snippetDetailSpecification">
     <li><span class="title">ID:</span> ${snippet.id}</li>
+    <li><span class="title">Language:</span> ${languages[snippet.language]}</li>
     <li><span class="title">Name:</span> ${snippet.name}</li>
     <li><span class="title">Mnemonic:</span> ${snippet.mnemonic}</li>
     <li><span class="title">Author:</span> ${snippet.author}</li>
