@@ -73,4 +73,13 @@
         <property name="jdbcTemplate" ref="simpleJdbcTemplate"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <!--ruby snippet service-->
+    <bean id="rubySnippetService" class="org.mvnsearch.snippet.domain.manager.impl.SnippetServiceImpl">
+        <property name="categoryManager" ref="categoryManager"/>
+        <property name="snippetManager" ref="snippetManager"/>
+        <property name="jdbcTemplate" ref="simpleJdbcTemplate"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="language" value="101"/>
+    </bean>
 </beans>
