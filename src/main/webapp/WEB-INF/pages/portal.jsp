@@ -6,10 +6,13 @@
     <meta name="description" content="Code Snippet Repository: free code snippet repository "/>
     <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="/statics/javascript/syntaxhighlighter/syntax-highlighter.css"/>
+    <link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shCore.css" />
+		<link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shThemeDefault.css" />
     <link rel="stylesheet" type="text/css" href="/statics/stylesheets/snippet.css"/>
     <link rel="alternate" type="application/rss+xml" title="Code Snippet Reposity RSS 2.0" href="/snippet/showRss.action"/>
-    <script type="text/javascript" src="/statics/javascript/syntaxhighlighter/shCore.js"></script>
-    <script type="text/javascript" src="/statics/javascript/syntaxhighlighter/shBrushLanguages.js"></script>
+    <script type="text/javascript" src="/statics/javascript/syntaxhighlighter2/shCore.js"></script>
+    <script type="text/javascript" src="/statics/javascript/syntaxhighlighter2/shLegacy.js"></script>
+    <script type="text/javascript" src="/statics/javascript/syntaxhighlighter2/shBrushLanguages.js"></script>
     <script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
     <script type="text/javascript" src="http://extjs.cachefly.net/builds/ext-cdn-25.js"></script> 
     <script type="text/javascript" src="/statics/javascript/repository.js"></script>
@@ -110,7 +113,7 @@
                 <p/>
 
                 <h2>Code:</h2>
-                <pre name="code" class="java:nocontrols">
+                <pre name="code" class="brush: java">
                      public class SnippetRepository {
                       public static void main(String[] args) {
                        System.out.println("Welcome to snippet repository!");
@@ -146,7 +149,7 @@
 </div>
 <div id="repository:statusBarPanel"/>
 <script type="text/javascript">
-    syntaxHighlighter();
+    SyntaxHighlighter.all();
     Layout.getSnippetFormWindow();
 </script>
 </body>
