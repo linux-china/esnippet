@@ -42,6 +42,15 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
     private SimpleJdbcTemplate jdbcTemplate;
     private CategoryManager categoryManager;
     private SnippetManager snippetManager;
+    private int language = 0;
+
+    /**
+     * set language
+     * @param language
+     */
+    public void setLanguage(int language) {
+        this.language = language;
+    }
 
     /**
      * inject jdbc template
@@ -82,6 +91,9 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
     public String renderTemplate(String mnemonic, String packageName, String fileName, String author) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Snippet.class);
         criteria.add(Restrictions.eq("mnemonic", mnemonic));
+        if (language > 0) {
+            criteria.add(Restrictions.eq("language", language));
+        }
         List<Snippet> snippets = getHibernateTemplate().findByCriteria(criteria);
         if (!snippets.isEmpty()) {
             Snippet snippet = snippets.get(0);
@@ -129,7 +141,11 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
      */
     public List<String> findMnemonicList(String prefix) {
         List<String> mnemonicList = new ArrayList<String>();
-        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select mnemonic from snippets where mnemonic like '" + prefix + "%'");
+        String SQLSelect = "select mnemonic from snippets where mnemonic like '" + prefix + "%'";
+        if (language > 0) {
+            SQLSelect = SQLSelect + " and language=" + language;
+        }
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(SQLSelect);
         for (Map<String, Object> map : maps) {
             mnemonicList.add((String) map.get("mnemonic"));
         }
@@ -145,7 +161,11 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
      */
     public List<String> findMnemonicListWithName(String prefix) {
         List<String> mnemonicList = new ArrayList<String>();
-        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select mnemonic,name from snippets where mnemonic like '" + prefix + "%'");
+        String SQLSelect = "select mnemonic,name from snippets where mnemonic like '" + prefix + "%'";
+        if (language > 0) {
+            SQLSelect = SQLSelect + " and language=" + language;
+        }
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(SQLSelect);
         for (Map<String, Object> map : maps) {
             mnemonicList.add(map.get("mnemonic") + ":" + map.get("name"));
         }
@@ -161,6 +181,9 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
     public List<Map<String, String>> findSnippetsByMnemonic(String mnemonicPrefix) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Snippet.class);
         criteria.add(Restrictions.like("mnemonic", mnemonicPrefix + "%"));
+        if (language > 0) {
+            criteria.add(Restrictions.eq("language", language));
+        }
         List<Snippet> snippets = getHibernateTemplate().findByCriteria(criteria);
         if (!snippets.isEmpty()) {
             List<Map<String, String>> snippetList = new ArrayList<Map<String, String>>();
@@ -183,7 +206,13 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
         List<Map<String, String>> infoList = new ArrayList<Map<String, String>>();
         List<Snippet> snippetList = snippetManager.findSnippetsByWord(keyword);
         for (Snippet snippet : snippetList) {
-            infoList.add(convertSnippetToMap(snippet));
+            if (language > 0) {
+                if (snippet.getLanguage() == language) {
+                    infoList.add(convertSnippetToMap(snippet));
+                }
+            } else {
+                infoList.add(convertSnippetToMap(snippet));
+            }
         }
         return infoList;
     }
