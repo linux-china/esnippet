@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="description" content="Code Snippet Repository: free code snippet repository "/>
     <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2/resources/css/ext-all.css" />
-    <link rel="stylesheet" type="text/css" href="/statics/javascript/syntaxhighlighter/syntax-highlighter.css"/>
     <link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shCore.css" />
 		<link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shThemeDefault.css" />
     <link rel="stylesheet" type="text/css" href="/statics/stylesheets/snippet.css"/>
