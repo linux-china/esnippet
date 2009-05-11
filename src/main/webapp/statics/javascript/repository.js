@@ -333,6 +333,9 @@ Repository.ListPanel = function() {
     });
     this.getSelectionModel().on("selectionchange", function(sm) {
         if (sm.getSelected()) {
+            /**
+             * @type Snippet
+             */
             var snippet = sm.getSelected().data;
             Layout.getStatusBarPanel().updateStatusBar(snippet.name, snippet.languageText, snippet.mnemonic, snippet.author);
             //            Layout.getStatusBarPanel().updateStatusText("Mnemonic: " + snippet.mnemonic);
