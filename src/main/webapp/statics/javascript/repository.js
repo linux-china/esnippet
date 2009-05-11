@@ -1,7 +1,7 @@
 Ext.namespace("Repository");
-var win;  //glabal win
+var win;  //global win
 /**
- * syntax hight lighter
+ * syntax high lighter
  */
 function syntaxHighlighter() {
     dp.SyntaxHighlighter.HighlightAll('code');
@@ -65,7 +65,7 @@ var Layout = {
 };
 
 /**
- * code panel with syntax hight lighter
+ * code panel with syntax high lighter
  * @param config
  */
 Repository.CodePanel = function(config) {
@@ -582,7 +582,7 @@ Repository.SnippetFormWindow = function() {
             type: 'submit',
             handler: function() {
                 formPanel.getForm().submit({url:'/snippet/save.json', waitMsg:'Saving Data...',success:function(form, action) {
-                    if (!form.isValid()) {   //validat
+                    if (!form.isValid()) {   //validate
                         Ext.Msg.alert("Error", "Please fill all required fields!");
                     } else {
                         var snippetId = action.result.snippet.id;
