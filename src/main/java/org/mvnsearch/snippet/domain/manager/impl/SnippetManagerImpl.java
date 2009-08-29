@@ -20,15 +20,14 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.mvnsearch.ridd.domain.RichDomainManagerSupport;
 import org.mvnsearch.snippet.domain.Snippet;
-import org.mvnsearch.snippet.domain.Category;
 import org.mvnsearch.snippet.domain.extra.Comment;
 import org.mvnsearch.snippet.domain.manager.SnippetManager;
-import org.mvnsearch.snippet.domain.manager.SnippetService;
-import org.mvnsearch.snippet.domain.manager.CategoryManager;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springmodules.cache.annotations.Cacheable;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * snippet manager implementation
