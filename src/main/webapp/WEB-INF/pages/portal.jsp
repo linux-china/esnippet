@@ -4,16 +4,17 @@
     <title>Code Snippet Repository Beta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="description" content="Code Snippet Repository: free code snippet repository "/>
-    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2/resources/css/ext-all.css" />
-    <link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shCore.css" />
-		<link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shThemeDefault.css" />
+    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2/resources/css/ext-all.css"/>
+    <link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="/statics/javascript/syntaxhighlighter2/styles/shThemeDefault.css"/>
     <link rel="stylesheet" type="text/css" href="/statics/stylesheets/snippet.css"/>
-    <link rel="alternate" type="application/rss+xml" title="Code Snippet Reposity RSS 2.0" href="/snippet/showRss.action"/>
+    <link rel="alternate" type="application/rss+xml" title="Code Snippet Reposity RSS 2.0"
+          href="/snippet/showRss.action"/>
     <script type="text/javascript" src="/statics/javascript/syntaxhighlighter2/shCore.js"></script>
     <script type="text/javascript" src="/statics/javascript/syntaxhighlighter2/shLegacy.js"></script>
     <script type="text/javascript" src="/statics/javascript/syntaxhighlighter2/shBrushLanguages.js"></script>
     <script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
-    <script type="text/javascript" src="http://extjs.cachefly.net/builds/ext-cdn-25.js"></script> 
+    <script type="text/javascript" src="http://extjs.cachefly.net/builds/ext-cdn-25.js"></script>
     <script type="text/javascript" src="/statics/javascript/repository.js"></script>
 
     <script type="text/javascript">
@@ -38,17 +39,22 @@
                 region:'west',
                 iconCls:'listHeaderIcon',
                 layout:'fit',
-                tools:[{id:'gear',qtip:'Edit Snippet',
-                    handler: function(event, toolEl, panel) {
-                        var formWin = Layout.getSnippetFormWindow();
-                        var snippetId = 0;
-                        var selected = Layout.getListPanel().getSelectionModel().getSelected();
-                        if (selected != null) {
-                            snippetId = selected.data.id;
+                tools:[
+                    {
+                        id:'gear',
+                        qtip:'Edit Snippet',
+                        handler: function(event, toolEl, panel) {
+                            var formWin = Layout.getSnippetFormWindow();
+                            var snippetId = 0;
+                            var selected = Layout.getListPanel().getSelectionModel().getSelected();
+                            if (selected != null) {
+                                snippetId = selected.data.id;
+                            }
+                            formWin.reloadSnippet(snippetId);
+                            formWin.show();
                         }
-                        formWin.reloadSnippet(snippetId);
-                        formWin.show();
-                    }}],
+                    }
+                ],
                 width:300,
                 items:[gridPanel]
             });
@@ -75,41 +81,49 @@
 <body>
 <!-- layout -->
 <div id="repository:menu">
-    <div id="repository:categoryTree"/>
-    <div id="repository:tagCloudPanel"/>
+    <div id="repository:categoryTree"></div>
+    <div id="repository:tagCloudPanel"></div>
 </div>
 <div id="content">
-    <div id="repository:listPanel"/>
+    <div id="repository:listPanel"></div>
     <div id="repository:detailTabPanel">
         <div class="x-tab" id="detailCode" title="Code">
             <div id="snippetDetailCodeDiv">
                 <h2>What is snippet repository? </h2>
 
-                <p>&nbsp;&nbsp;You have written a lot of code, and only 1% code can be used again by Ctrl+C and Ctrl+V. You search them in the directory and get
-                    the file and find them, then copy the code and put them in the editor. It is very low efficient and all these code can not be shared with
+                <p>&nbsp;&nbsp;You have written a lot of code, and only 1% code can be used again by Ctrl+C and Ctrl+V.
+                    You search them in the directory and get
+                    the file and find them, then copy the code and put them in the editor. It is very low efficient and
+                    all these code can not be shared with
                     others. </p>
 
-                <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository to find gems. They can add comments,
+                <p>&nbsp;&nbsp;Snippet repository collects all excellent snippets, and developers can visit repository
+                    to find gems. They can add comments,
                     modify code and make the snippet excellent. </p>
 
-                <p/>
+                <p></p>
 
                 <h2>Change list: </h2>
                 <ul>
                     <li>
                         &nbsp;&nbsp; 1. eSnippet was hosted in Google Code and adopt GPL license, and the home site is
-                        <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
+                        <a href="http://code.google.com/p/esnippet"
+                           target="_blank">http://code.google.com/p/esnippet</a>
                     </li>
                     <li>
                         &nbsp;&nbsp; 2. eSnippet Pro plugin for IntelliJ IDEA has been released. Please visit
-                        <a href="http://code.google.com/p/esnippet" target="_blank">http://code.google.com/p/esnippet</a>
+                        <a href="http://code.google.com/p/esnippet"
+                           target="_blank">http://code.google.com/p/esnippet</a>
                         to download it. Screen shot as following: <br/>
                         <img src="/statics/images/projects/snippet_tool_window.png" alt="eSnippet Pro plugin"/>
                     </li>
+                    <li>
+                        &nbsp;&nbsp; 3. SyntaxHighlighter updated to 2.0.320 and with some bugs fixed for ExtJS.
+                    </li>
                 </ul>
-                <p/>
+                <p></p>
 
-                <p/>
+                <p></p>
 
                 <h2>Code:</h2>
                 <pre name="code" class="brush: java">
@@ -146,7 +160,7 @@
         <h1 align="center"><br/>Code Snippet 2.0 beta</h1>
     </div>
 </div>
-<div id="repository:statusBarPanel"/>
+<div id="repository:statusBarPanel"></div>
 <script type="text/javascript">
     SyntaxHighlighter.all();
     Layout.getSnippetFormWindow();
