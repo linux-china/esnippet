@@ -20,7 +20,12 @@
         </layout>
     </appender>
 
-    <!--logger for project-->
+    <!-- logger for xwork interceptor -->
+    <logger name="com.opensymphony.xwork2.interceptor">
+        <level value="fatal"/>
+    </logger>
+
+    <!-- logger for project -->
     <logger name="org.mvnsearch">
         <level value="debug"/>
     </logger>
