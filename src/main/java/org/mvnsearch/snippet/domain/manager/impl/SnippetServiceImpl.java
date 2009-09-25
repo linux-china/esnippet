@@ -46,6 +46,7 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
 
     /**
      * set language
+     *
      * @param language language
      */
     public void setLanguage(int language) {
@@ -152,6 +153,26 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
         return mnemonicList;
     }
 
+    /**
+     * find mnemonic list according to prefix
+     *
+     * @param prefix prefix
+     * @param isFile is file fragement
+     * @return mnemonic list, max size is 100
+     */
+    public List<String> findMnemonicList(String prefix, boolean isFile) {
+        List<String> mnemonicList = new ArrayList<String>();
+        String type = isFile ? "1" : "0";
+        String SQLSelect = "select mnemonic from snippets where type = '" + type + "' and mnemonic like '" + prefix + "%'";
+        if (language > 0) {
+            SQLSelect = SQLSelect + " and language=" + language;
+        }
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(SQLSelect);
+        for (Map<String, Object> map : maps) {
+            mnemonicList.add((String) map.get("mnemonic"));
+        }
+        return mnemonicList;
+    }
 
     /**
      * find mnemonic list according to prefix
