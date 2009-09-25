@@ -157,13 +157,11 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
      * find mnemonic list according to prefix
      *
      * @param prefix prefix
-     * @param isFile is file fragement
      * @return mnemonic list, max size is 100
      */
-    public List<String> findMnemonicList(String prefix, boolean isFile) {
+    public List<String> findFileMnemonicList(String prefix) {
         List<String> mnemonicList = new ArrayList<String>();
-        String type = isFile ? "1" : "0";
-        String SQLSelect = "select mnemonic from snippets where type = '" + type + "' and mnemonic like '" + prefix + "%'";
+        String SQLSelect = "select mnemonic from snippets where type = '1' and mnemonic like '" + prefix + "%'";
         if (language > 0) {
             SQLSelect = SQLSelect + " and language=" + language;
         }
