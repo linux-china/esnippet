@@ -321,7 +321,7 @@ public class Snippet extends RichDomainSupport {
     }
 
     /**
-     * set exmaple code
+     * set example code
      *
      * @param example example code
      */
