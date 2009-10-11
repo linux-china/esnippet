@@ -15,6 +15,7 @@
 
 package org.mvnsearch.snippet.domain;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.Type;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -421,5 +422,32 @@ public class Snippet extends RichDomainSupport {
         criteria.add(Restrictions.eq("snippetId", this.id));
         criteria.addOrder(Order.desc("id"));
         return getHibernateTemplate().findByCriteria(criteria);
+    }
+
+    /**
+     * convert utf8 to iso-8859-1
+     */
+    public void convertUtf8ToIso() {
+        this.name = convertUtf8ToIso(name);
+        this.author = convertUtf8ToIso(author);
+        this.description = convertUtf8ToIso(description);
+        this.code = convertUtf8ToIso(code);
+        this.example = convertUtf8ToIso(example);
+    }
+
+
+    /**
+     * convert utf-8 to iso-8859-1
+     *
+     * @param text text
+     * @return converted text
+     */
+    private String convertUtf8ToIso(String text) {
+        if (StringUtils.isEmpty(text)) return text;
+        try {
+            return new String(text.getBytes("utf-8"), "iso-8859-1");
+        } catch (Exception e) {
+            return text;
+        }
     }
 }
