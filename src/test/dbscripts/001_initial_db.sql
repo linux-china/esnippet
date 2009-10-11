@@ -18,7 +18,7 @@ create table snippets
     language int,
     icon int,
     author varchar(32) CHARACTER SET utf8,
-    keywords varchar(256),
+    keywords varchar(256) CHARACTER SET utf8,
     url varchar(128),
     description mediumtext  CHARACTER SET utf8 ,
     code mediumtext  CHARACTER SET utf8,
