@@ -430,6 +430,7 @@ public class Snippet extends RichDomainSupport {
     public void convertUtf8ToIso() {
         this.name = convertUtf8ToIso(name);
         this.author = convertUtf8ToIso(author);
+        this.keywords = convertUtf8ToIso(keywords);
         this.description = convertUtf8ToIso(description);
         this.code = convertUtf8ToIso(code);
         this.example = convertUtf8ToIso(example);
