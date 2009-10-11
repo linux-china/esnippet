@@ -134,6 +134,12 @@ public class SnippetQueryAction extends RichDomainQueryAction<Snippet> {
                 snippets = snippetManager.findSnippetsByWord(q);
             }
         }
+        //crack for json output
+        if (request.getRequestURI().endsWith(".json") && snippets != null) {
+            for (Snippet snippet : snippets) {
+                snippet.convertUtf8ToIso();
+            }
+        }
         return getAlternativeResult(INDEX);
     }
 }
