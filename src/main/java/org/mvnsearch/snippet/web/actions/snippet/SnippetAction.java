@@ -15,7 +15,6 @@
 
 package org.mvnsearch.snippet.web.actions.snippet;
 
-import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.mvnsearch.ridd.struts2.RichDomainRestAction;
 import org.mvnsearch.snippet.domain.Snippet;
@@ -113,26 +112,8 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
             snippet = snippetManager.findById(id);
             //crack for json output
             if (request.getRequestURI().endsWith(".json")) {
-                snippet.setDescription(convertUtf8ToIso(snippet.getDescription()));
-                snippet.setCode(convertUtf8ToIso(snippet.getCode()));
-                snippet.setExample(convertUtf8ToIso(snippet.getExample()));
-
+                snippet.convertUtf8ToIso();
             }
-        }
-    }
-
-    /**
-     * convert utf-8 to iso-8859-1
-     *
-     * @param text text
-     * @return converted text
-     */
-    private String convertUtf8ToIso(String text) {
-        if (StringUtils.isEmpty(text)) return text;
-        try {
-            return new String(text.getBytes("utf-8"), "iso-8859-1");
-        } catch (Exception e) {
-            return text;
         }
     }
 
