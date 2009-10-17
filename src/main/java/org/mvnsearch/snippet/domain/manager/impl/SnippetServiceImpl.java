@@ -180,13 +180,41 @@ public class SnippetServiceImpl extends HibernateDaoSupport implements SnippetSe
      */
     public List<String> findMnemonicListWithName(String prefix) {
         List<String> mnemonicList = new ArrayList<String>();
-        String SQLSelect = "select mnemonic,name from snippets where mnemonic like '" + prefix + "%'";
+        String SQLSelect = "select mnemonic, name from snippets where mnemonic like '" + prefix + "%'";
         if (language > 0) {
             SQLSelect = SQLSelect + " and language=" + language;
         }
         List<Map<String, Object>> maps = jdbcTemplate.queryForList(SQLSelect);
-        for (Map<String, Object> map : maps) {
-            mnemonicList.add(map.get("mnemonic") + ":" + map.get("name"));
+        if (maps.size() > 0) {
+            for (Map<String, Object> map : maps) {
+                mnemonicList.add(map.get("mnemonic") + ":" + map.get("name"));
+            }
+        }
+        return mnemonicList;
+    }
+
+    /**
+     * find mnemonic list according to prefix
+     *
+     * @param prefix prefix
+     * @return mnemonic list, max size is 100
+     */
+    public List<String> findMnemonicListWithNameAndIcon(String prefix) {
+        List<String> mnemonicList = new ArrayList<String>();
+        String SQLSelect = "select mnemonic, name, icon from snippets where mnemonic like '" + prefix + "%'";
+        if (language > 0) {
+            SQLSelect = SQLSelect + " and language=" + language;
+        }
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(SQLSelect);
+        if (maps.size() > 0) {
+            Map<Integer, String> icons = snippetManager.getAllSnippetIcon();
+            for (Map<String, Object> map : maps) {
+                String icon = icons.get(map.get("icon"));
+                if (icon == null) {
+                    icon = "text.png";
+                }
+                mnemonicList.add(icon + ":" + map.get("mnemonic") + ":" + map.get("name"));
+            }
         }
         return mnemonicList;
     }
