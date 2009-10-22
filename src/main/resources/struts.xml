@@ -25,6 +25,7 @@
     <!-- browser url: /config-browser/index.action -->
     <include file="struts2config/category-package.xml"/>
     <include file="struts2config/snippet-package.xml"/>
+    <include file="struts2config/project-package.xml"/>
     <include file="struts2config/portal-package.xml"/>
     <include file="config-browser.xml"/>
 </struts>
