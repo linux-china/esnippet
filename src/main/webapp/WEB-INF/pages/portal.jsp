@@ -82,6 +82,7 @@
 <!-- layout -->
 <div id="repository:menu">
     <div id="repository:categoryTree"></div>
+    <div id="repository:projectListPanel"></div>
     <div id="repository:tagCloudPanel"></div>
 </div>
 <div id="content">
