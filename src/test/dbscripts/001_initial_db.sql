@@ -52,12 +52,12 @@ create table snippet_comments
 );
 
 --project short names
-create table project_shortnames {
+create table snippet_projects (
   id int not null primary key auto_increment,
   name varchar(128),
   short_name varchar(16),
   description varchar(512)
-};
+);
 
 --sample data
 INSERT INTO `snippet_category` VALUES (1,NULL,'Language','language.png','2008-06-04 22:21:19'),
