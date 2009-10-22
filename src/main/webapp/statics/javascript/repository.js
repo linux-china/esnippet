@@ -70,7 +70,9 @@ var Layout = {
  */
 Repository.CodePanel = function(config) {
     Ext.apply(this, config);
-    this.on("show", function () {  sh.highlight(); });
+    this.on("show", function () {
+        sh.highlight();
+    });
 };
 Ext.extend(Repository.CodePanel, Ext.Panel);
 
@@ -87,20 +89,26 @@ Repository.CategoryTreePanel = function(listPanel) {
         animate:true,
         enableDD:false,
         containerScroll: false,
-        tools:[{id:'up',qtip:'create a new Snippet',handler:function() {
-            var formWin = Layout.getSnippetFormWindow();
-            var categoryId = null;
-            var node = Ext.getCmp("repository:categoryTree").getSelectionModel().getSelectedNode();
-            if (node != null) {
-                categoryId = node.attributes['id'];
+        tools:[
+            {
+                id:'up',
+                qtip:'create a new Snippet',
+                handler:function() {
+                    var formWin = Layout.getSnippetFormWindow();
+                    var categoryId = null;
+                    var node = Ext.getCmp("repository:categoryTree").getSelectionModel().getSelectedNode();
+                    if (node != null) {
+                        categoryId = node.attributes['id'];
+                    }
+                    if (categoryId > 0) {  //category selected
+                        formWin.resetForm(categoryId);
+                        formWin.show();
+                    } else { //no category selected
+                        Ext.Msg.alert("Error", "Please select a category to add snippet!");
+                    }
+                }
             }
-            if (categoryId > 0) {  //category selected
-                formWin.resetForm(categoryId);
-                formWin.show();
-            } else { //no category selected
-                Ext.Msg.alert("Error", "Please select a category to add snippet!");
-            }
-        }}],
+        ],
         loader: new Ext.tree.TreeLoader({
             dataUrl:'/category/index.json'
         }),
@@ -167,8 +175,9 @@ Repository.MenuPanel = function(listPanel) {
     var categoryTree = new Repository.CategoryTreePanel(listPanel);
     categoryTree.root.expand(true, false);
     //tag cloud panel
-    var tagCloundPanel = new Repository.TagCloudPanel();
-
+    var tagCloudPanel = new Repository.TagCloudPanel();
+    //project list panel
+    var projectListPanel = new Repository.ProjectListPanel();
     Repository.MenuPanel.superclass.constructor.call(this, {
         region:'west',
         el: 'repository:menu',
@@ -186,7 +195,7 @@ Repository.MenuPanel = function(listPanel) {
         layoutConfig:{
             animate:true
         },
-        items:[categoryTree, tagCloundPanel]
+        items:[categoryTree, projectListPanel, tagCloudPanel]
     });
 };
 Ext.extend(Repository.MenuPanel, Ext.Panel);
@@ -293,8 +302,17 @@ Repository.HeaderPanel = function(listPanel) {
         layout: "border",
         border: false,
         height:50,
-        items:[ searchPanel, { region: 'west',  border: false, contentEl: 'header:logo', width:320},
-            { region: 'center',  border: false, contentEl: 'header:welcome'}]
+        items:[ searchPanel, {
+            region: 'west',
+            border: false,
+            contentEl: 'header:logo',
+            width:320
+        },
+            {
+                region: 'center',
+                border: false,
+                contentEl: 'header:welcome'
+            }]
     });
 };
 Ext.extend(Repository.HeaderPanel, Ext.Panel);
@@ -310,19 +328,47 @@ Repository.ListPanel = function() {
         url: '/snippet/query.json',
         id: 'id',
         fields: [
-            {name: 'id'},
-            {name: 'icon', type: 'string'},
-            {name: 'name', type: 'string'},
-            {name: 'author', type: 'string'},
-            {name: 'languageText', type: 'string'},
-            {name: 'mnemonic', type: 'string'}
+            {
+                name: 'id'
+            },
+            {
+                name: 'icon',
+                type: 'string'
+            },
+            {
+                name: 'name',
+                type: 'string'
+            },
+            {
+                name: 'author',
+                type: 'string'
+            },
+            {
+                name: 'languageText',
+                type: 'string'
+            },
+            {
+                name: 'mnemonic',
+                type: 'string'
+            }
         ],
         autoLoad: true
     });
     this.columns = [
         new Ext.grid.RowNumberer(),
-        {header:'',width:24, dataIndex:'icon',sortable:false,renderer:displayIcon},
-        {header:'Name',width:280, dataIndex:'name',sortable:true}
+        {
+            header:'',
+            width:24,
+            dataIndex:'icon',
+            sortable:false,
+            renderer:displayIcon
+        },
+        {
+            header:'Name',
+            width:280,
+            dataIndex:'name',
+            sortable:true
+        }
     ];
     Repository.ListPanel.superclass.constructor.call(this, {
         id: 'repository:listPanel',
@@ -394,6 +440,57 @@ Repository.ListPanel = function() {
 Ext.extend(Repository.ListPanel, Ext.grid.GridPanel);
 
 /**
+ * project list panel
+ * @class ProjectListPanel
+ */
+Repository.ProjectListPanel = function() {
+    var sm = new Ext.grid.RowSelectionModel({singleSelect:true});
+    this.store = new Ext.data.JsonStore({
+        url: '/project/index.json',
+        id: 'id',
+        fields: [
+            {
+                name: 'id'
+            },
+            {
+                name: 'name',
+                type: 'string'
+            },
+            {
+                name: 'shortName',
+                type: 'string'
+            }
+        ],
+        autoLoad: true
+    });
+    this.columns = [
+        {
+            header:'Name',
+            width:120,
+            dataIndex:'name',
+            sortable:true
+        },
+        {
+            header:'Alias',
+            width:70,
+            dataIndex:'shortName',
+            sortable:true
+        }
+    ];
+    Repository.ProjectListPanel.superclass.constructor.call(this, {
+        id: 'repository:projectListPanel',
+        el:'repository:projectListPanel',
+        title:'Projects',
+        sm: sm,
+        store: this.store,
+        autoScroll:true,
+        viewConfig: new Ext.grid.GridView({emptyText:'No Project Found!'})
+    });
+
+};
+Ext.extend(Repository.ProjectListPanel, Ext.grid.GridPanel);
+
+/**
  * snippet edit form window
  */
 Repository.SnippetFormWindow = function() {
@@ -423,111 +520,134 @@ Repository.SnippetFormWindow = function() {
         bodyStyle:'padding:5px',
         width: 600,
         deferredRender:false,
-        items: [{
-            layout:'column',
-            border:false,
-            items:[{
-                columnWidth:.5,
-                layout: 'form',
+        items: [
+            {
+                layout:'column',
                 border:false,
-                items: [{
-                    xtype:'textfield',
-                    fieldLabel: 'Name',
-                    name: 'name',
-                    anchor:'95%',
-                    allowBlank:false
-                }, {
-                    xtype:'textfield',
-                    fieldLabel: 'Mnemonic',
-                    name: 'mnemonic',
-                    anchor:'95%',
-                    allowBlank:false
-                }]
-            },{
-                columnWidth:.5,
-                layout: 'form',
+                items:[
+                    {
+                        columnWidth:.5,
+                        layout: 'form',
+                        border:false,
+                        items: [
+                            {
+                                xtype:'textfield',
+                                fieldLabel: 'Name',
+                                name: 'name',
+                                anchor:'95%',
+                                allowBlank:false
+                            },
+                            {
+                                xtype:'textfield',
+                                fieldLabel: 'Mnemonic',
+                                name: 'mnemonic',
+                                anchor:'95%',
+                                allowBlank:false
+                            }
+                        ]
+                    },
+                    {
+                        columnWidth:.5,
+                        layout: 'form',
+                        border:false,
+                        items: [
+                            {
+                                xtype:'combo',
+                                fieldLabel: 'Category',
+                                name: 'categoryId',
+                                hiddenName:'categoryId',
+                                store: categoryStore,
+                                tpl:new Ext.XTemplate(
+                                        '<tpl for=".">',
+                                        '<div class="x-combo-list-item"><img src="/statics/images/category/{icon}">&nbsp;{name}</div>',
+                                        '</tpl>'
+                                        ),
+                                mode:'local',
+                                forceSelection:true,
+                                displayField:'name',
+                                valueField:'id',
+                                triggerAction: 'all',
+                                anchor:'95%',
+                                allowBlank:false
+                            },
+                            {
+                                xtype:'combo',
+                                fieldLabel: 'Language',
+                                name: 'language',
+                                hiddenName:'language',
+                                store: languageStore,
+                                mode:'local',
+                                forceSelection:true,
+                                displayField:'value',
+                                valueField:'id',
+                                triggerAction: 'all',
+                                anchor:'95%',
+                                allowBlank:false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                layout:'column',
                 border:false,
-                items: [{
-                    xtype:'combo',
-                    fieldLabel: 'Category',
-                    name: 'categoryId',
-                    hiddenName:'categoryId',
-                    store: categoryStore,
-                    tpl:new Ext.XTemplate(
-                            '<tpl for=".">',
-                           '<div class="x-combo-list-item"><img src="/statics/images/category/{icon}">&nbsp;{name}</div>',
-                            '</tpl>'
-                            ),
-                    mode:'local',
-                    forceSelection:true,
-                    displayField:'name',
-                    valueField:'id',
-                    triggerAction: 'all',
-                    anchor:'95%',
-                    allowBlank:false
-                },{
-                    xtype:'combo',
-                    fieldLabel: 'Language',
-                    name: 'language',
-                    hiddenName:'language',
-                    store: languageStore,
-                    mode:'local',
-                    forceSelection:true,
-                    displayField:'value',
-                    valueField:'id',
-                    triggerAction: 'all',
-                    anchor:'95%',
-                    allowBlank:false
-                }]
-            }]
-        },  {
-            layout:'column',
-            border:false,
-            items:[{
-                columnWidth:.5,
-                layout: 'form',
-                border:false,
-                items: [{
-                    xtype:'textfield',
-                    fieldLabel: 'Author',
-                    name: 'author',
-                    anchor:'95%',
-                    allowBlank:false
-                }, {
-                    xtype:'textfield',
-                    fieldLabel: 'Key Words',
-                    name: 'keywords',
-                    anchor:'95%',
-                    allowBlank:false
-                }]
-            },{
-                columnWidth:.5,
-                layout: 'form',
-                border:false,
-                items: [{
-                    xtype:'combo',
-                    fieldLabel: 'Icon',
-                    store: iconStore,
-                    name: 'icon',
-                    hiddenName:'icon',
-                    mode:'local',
-                    forceSelection:true,
-                    displayField:'value',
-                    valueField:'id',
-                    triggerAction: 'all',
-                    anchor:'95%'
-                },{
-                    xtype:'combo',
-                    fieldLabel: 'Type',
-                    store:[['1','File'],['0','Fragment']],
-                    name: 'type',
-                    hiddenName:'type',
-                    triggerAction: 'all',
-                    allowBlank:false,
-                    anchor:'95%'
-                }]
-            }]
-        },
+                items:[
+                    {
+                        columnWidth:.5,
+                        layout: 'form',
+                        border:false,
+                        items: [
+                            {
+                                xtype:'textfield',
+                                fieldLabel: 'Author',
+                                name: 'author',
+                                anchor:'95%',
+                                allowBlank:false
+                            },
+                            {
+                                xtype:'textfield',
+                                fieldLabel: 'Key Words',
+                                name: 'keywords',
+                                anchor:'95%',
+                                allowBlank:false
+                            }
+                        ]
+                    },
+                    {
+                        columnWidth:.5,
+                        layout: 'form',
+                        border:false,
+                        items: [
+                            {
+                                xtype:'combo',
+                                fieldLabel: 'Icon',
+                                store: iconStore,
+                                name: 'icon',
+                                hiddenName:'icon',
+                                mode:'local',
+                                forceSelection:true,
+                                displayField:'value',
+                                valueField:'id',
+                                triggerAction: 'all',
+                                anchor:'95%'
+                            },
+                            {
+                                xtype:'combo',
+                                fieldLabel: 'Type',
+                                store:[
+                                    ['1','File'],
+                                    ['0','Fragment']
+                                ],
+                                name: 'type',
+                                hiddenName:'type',
+                                triggerAction: 'all',
+                                allowBlank:false,
+                                anchor:'95%'
+                            }
+                        ]
+                    }
+                ]
+            },
             {
                 xtype:'tabpanel',
                 plain:true,
@@ -535,73 +655,84 @@ Repository.SnippetFormWindow = function() {
                 activeTab: 0,
                 height:320,
                 defaults:{bodyStyle:'padding:10px'},
-                items:[{
-                    title:'Description',
-                    layout:'form',
-                    defaults: {width: 230},
-                    defaultType: 'textarea',
-                    items: [
-                        {
-                            xtype:'hidden',
-                            name:'id',
-                            id: 'snippet_hidden_id'
-                        },
-                        {
-                            xtype:'htmleditor',
-                            fieldLabel: 'Description',
-                            hideLabel:true,
-                            name: 'description',
-                            allowBlank:false,
-                            width:580,
-                            height:320
-                        }]
-                },{
-                    title:'Code',
-                    layout:'form',
-                    defaults: {width: 230},
-                    defaultType: 'textarea',
-                    items: [{
-                        fieldLabel: 'Code',
-                        hideLabel:true,
-                        name: 'code',
-                        allowBlank:false,
-                        width:580,
-                        height:320
-                    }]
-                },{
-                    cls:'x-plain',
-                    title:'Example',
-                    layout:'fit',
-                    items: {
-                        xtype:'textarea',
-                        name:'example',
-                        fieldLabel:'Example',
-                        hideLabel:true
+                items:[
+                    {
+                        title:'Description',
+                        layout:'form',
+                        defaults: {width: 230},
+                        defaultType: 'textarea',
+                        items: [
+                            {
+                                xtype:'hidden',
+                                name:'id',
+                                id: 'snippet_hidden_id'
+                            },
+                            {
+                                xtype:'htmleditor',
+                                fieldLabel: 'Description',
+                                hideLabel:true,
+                                name: 'description',
+                                allowBlank:false,
+                                width:580,
+                                height:320
+                            }
+                        ]
+                    },
+                    {
+                        title:'Code',
+                        layout:'form',
+                        defaults: {width: 230},
+                        defaultType: 'textarea',
+                        items: [
+                            {
+                                fieldLabel: 'Code',
+                                hideLabel:true,
+                                name: 'code',
+                                allowBlank:false,
+                                width:580,
+                                height:320
+                            }
+                        ]
+                    },
+                    {
+                        cls:'x-plain',
+                        title:'Example',
+                        layout:'fit',
+                        items: {
+                            xtype:'textarea',
+                            name:'example',
+                            fieldLabel:'Example',
+                            hideLabel:true
+                        }
                     }
-                }]
-            }],
-        buttons: [{
-            text: 'Save',
-            type: 'submit',
-            handler: function() {
-                formPanel.getForm().submit({url:'/snippet/save.json', waitMsg:'Saving Data...',success:function(form, action) {
-                    if (!form.isValid()) {   //validate
-                        Ext.Msg.alert("Error", "Please fill all required fields!");
-                    } else {
-                        var snippetId = action.result.snippet.id;
-                        var h = Ext.getCmp("snippet_hidden_id");
-                        h.getEl().dom.value = snippetId;
-                        Layout.getSnippetFormWindow().setTitle('<font color="red">Save Successfully!</font>');
-                        Layout.getListPanel().refreshSnippets();
-                    }
-                }});
+                ]
             }
-        },{
-            text: 'Close',
-            handler: function() {
-                Layout.getSnippetFormWindow().hide();
+        ],
+        buttons: [
+            {
+                text: 'Save',
+                type: 'submit',
+                handler: function() {
+                    formPanel.getForm().submit({url:'/snippet/save.json', waitMsg:'Saving Data...',success:function(form, action) {
+                        if (!form.isValid()) {   //validate
+                            Ext.Msg.alert("Error", "Please fill all required fields!");
+                        } else {
+                            var snippetId = action.result.snippet.id;
+                            var h = Ext.getCmp("snippet_hidden_id");
+                            h.getEl().dom.value = snippetId;
+                            Layout.getSnippetFormWindow().setTitle('<font color="red">Save Successfully!</font>');
+                            Layout.getListPanel().refreshSnippets();
+                        }
+                    }});
+                }
+            },
+            {
+                text: 'Close',
+                handler: function() {
+                    Layout.getSnippetFormWindow().hide();
+                }
             }
-        }]
+        ]
     });
 
     Repository.SnippetFormWindow.superclass.constructor.call(this, {
@@ -646,12 +777,30 @@ Repository.CommentPanel = function () {
         url: '/snippet/showComments.json',
         id: 'id',
         fields: [
-            {name: 'id',mapping:"id"},
-            {name: 'commentator', type: 'string'},
-            {name: 'commentatorEmail', type: 'string'},
-            {name: 'subject', type: 'string'},
-            {name: 'content', type: 'string'},
-            {name: 'createdAt', type: 'string'}
+            {
+                name: 'id',
+                mapping:"id"
+            },
+            {
+                name: 'commentator',
+                type: 'string'
+            },
+            {
+                name: 'commentatorEmail',
+                type: 'string'
+            },
+            {
+                name: 'subject',
+                type: 'string'
+            },
+            {
+                name: 'content',
+                type: 'string'
+            },
+            {
+                name: 'createdAt',
+                type: 'string'
+            }
         ],
         autoLoad: true
     });
@@ -673,29 +822,34 @@ Repository.CommentPanel = function () {
         split:true,
         height: 200,
         items: [
-            {     xtype: 'hidden',
+            {
+                xtype: 'hidden',
                 name: 'id',
                 allowBlank:false
             },
-            {     xtype: 'textfield',
+            {
+                xtype: 'textfield',
                 fieldLabel: 'Author',
                 name: 'commentator',
                 allowBlank:false,
                 width: 400
             },
-            {     xtype: 'textfield',
+            {
+                xtype: 'textfield',
                 fieldLabel: 'Email',
                 name: 'commentatorEmail',
                 allowBlank:false,
                 width: 400
             },
-            {     xtype: 'textfield',
+            {
+                xtype: 'textfield',
                 fieldLabel: 'Title',
                 name: 'subject',
                 allowBlank:false,
                 width: 400
             }
-            ,{
+            ,
+            {
                 xtype: 'textarea',
                 fieldLabel: 'Message',
                 name: 'content',
@@ -704,24 +858,26 @@ Repository.CommentPanel = function () {
                 height:120
             }
         ],
-        buttons : [{
-            text: 'Save',
-            type: 'submit',
-            handler: function() {
-                if (!formPanel.getForm().isValid()) {
-                    Ext.Msg.alert('Alert', 'Please fill correct information!');
-                    return;
-                }
-                if (formPanel.getForm().getValues(false).id == '') {
-                    Ext.Msg.alert('Alert', 'You should select a book then add your comment!');
-                } else {
-                    formPanel.getForm().submit({url:'/snippet/addComment.json', waitMsg:'Saving Data...',
-                        success: function() {
-                            Ext.getCmp("repository:comment").loadComments(formPanel.getForm().getValues(false).id);
-                        }});
+        buttons : [
+            {
+                text: 'Save',
+                type: 'submit',
+                handler: function() {
+                    if (!formPanel.getForm().isValid()) {
+                        Ext.Msg.alert('Alert', 'Please fill correct information!');
+                        return;
+                    }
+                    if (formPanel.getForm().getValues(false).id == '') {
+                        Ext.Msg.alert('Alert', 'You should select a book then add your comment!');
+                    } else {
+                        formPanel.getForm().submit({url:'/snippet/addComment.json', waitMsg:'Saving Data...',
+                            success: function() {
+                                Ext.getCmp("repository:comment").loadComments(formPanel.getForm().getValues(false).id);
+                            }});
+                    }
                 }
             }
-        }]
+        ]
     });
     var commentListPanel = new Ext.Panel({
         title:'Comment list',
