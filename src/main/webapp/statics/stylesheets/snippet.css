@@ -5,6 +5,15 @@
 .listHeaderIcon {
     background: url( /statics/images/bullets.png ) 0 -1px no-repeat !important;
 }
+.categoryIcon {
+    background-image: url(/statics/images/category.png) !important;
+}
+.projectIcon {
+    background-image: url(/statics/images/project.png) !important;
+}
+.tagIcon {
+    background-image: url(/statics/images/tag.png) !important;
+}
 
 .comment-item {
     font: normal 12px tahoma, arial, helvetica, sans-serif;
