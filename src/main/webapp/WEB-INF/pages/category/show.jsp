@@ -6,7 +6,7 @@
     <li>ID: ${category.id}</li>
     <li>Name: ${category.name}</li>
     <li>Icon: <img src="/statics/images/category/${category.icon}"/></li>
-    <li>Parent ID: ${category.id}</li>
+    <li>Parent ID: ${category.parentId}</li>
 </ul>
 <hr/>
 <a href="showAll.action">return to list</a>
