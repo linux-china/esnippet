@@ -51,6 +51,14 @@ create table snippet_comments
     created_at timestamp
 );
 
+--project short names
+create table project_shortnames {
+  id int not null primary key auto_increment,
+  name varchar(128),
+  short_name varchar(16),
+  description varchar(512)
+};
+
 --sample data
 INSERT INTO `snippet_category` VALUES (1,NULL,'Language','language.png','2008-06-04 22:21:19'),
         (2,1,'Java','java.png','2008-05-23 22:34:17'),
