@@ -26,11 +26,16 @@
     </bean>
 
     <!--category domain-->
-     <bean id="category" class="org.mvnsearch.snippet.domain.Category" scope="prototype">
+    <bean id="category" class="org.mvnsearch.snippet.domain.Category" scope="prototype">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="categoryManager" class="org.mvnsearch.snippet.domain.manager.impl.CategoryManagerImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
         <lookup-method name="construct" bean="category"/>
+    </bean>
+
+    <!--project manager-->
+    <bean id="projectManager" class="org.mvnsearch.snippet.domain.manager.impl.ProjectManagerImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 </beans>
