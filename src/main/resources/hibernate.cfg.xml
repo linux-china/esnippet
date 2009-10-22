@@ -19,6 +19,7 @@
         <!--mapping resource-->
         <mapping class="org.mvnsearch.snippet.domain.Snippet"/>
         <mapping class="org.mvnsearch.snippet.domain.Category"/>
+        <mapping class="org.mvnsearch.snippet.domain.Project"/>
         <mapping class="org.mvnsearch.snippet.domain.extra.Comment"/>
     </session-factory>
 </hibernate-configuration>
