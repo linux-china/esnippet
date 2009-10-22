@@ -85,6 +85,7 @@ Repository.CategoryTreePanel = function(listPanel) {
         id: 'repository:categoryTree',
         el: 'repository:categoryTree',
         title: 'Category',
+        iconCls:'categoryIcon',
         autoScroll:true,
         animate:true,
         enableDD:false,
@@ -148,6 +149,7 @@ Repository.TagCloudPanel = function() {
         id: 'repository:tagCloudPanel',
         el: 'repository:tagCloudPanel',
         title: 'Tag Cloud',
+        iconCls:'tagIcon',
         autoScroll:false,
         animate:true,
         enableDD:false,
@@ -483,6 +485,7 @@ Repository.ProjectListPanel = function() {
         title:'Projects',
         sm: sm,
         store: this.store,
+        iconCls:'projectIcon',
         autoScroll:true,
         viewConfig: new Ext.grid.GridView({emptyText:'No Project Found!'})
     });
