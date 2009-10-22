@@ -121,6 +121,9 @@
                     <li>
                         &nbsp;&nbsp; 3. SyntaxHighlighter updated to 2.0.320 and with some bugs fixed for ExtJS.
                     </li>
+                    <li>
+                        &nbsp;&nbsp; 4. Project list added for alias.
+                    </li>
                 </ul>
                 <p></p>
 
