@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- struts 2.0 package for Snippet domain-->
+    <package namespace="/project" name="project-package" extends="project-default">
+        <global-results>
+            <!--html page results-->
+            <result name="index_json">/WEB-INF/pages/project/json/index_json.jsp</result>
+        </global-results>
+        <!--index action-->
+        <action name="index" class="org.mvnsearch.snippet.web.actions.project.ProjectQueryAction" method="index"/>
+    </package>
+</struts>
