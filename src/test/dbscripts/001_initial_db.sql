@@ -137,8 +137,44 @@ INSERT INTO meta_data VALUES
 (210,'text.png','icon'),
 (111,'Text','language');
 
-INSERT INTO snippet_projects (id, name, short_name) VALUES (1,'iBAITS','ibatis'),
-(2,'SpringFramework','spr');
+INSERT INTO snippet_projects (id, name, short_name) VALUES 
+(1,'Java','java'),
+(2,'PHP','php'),
+(3,'Ruby','rb'),
+(4,'JavaScript','js'),
+(5,'HTML','html'),
+(6,'Python','py'),
+(7,'CSS','css'),
+(8,'SpringFramework','spr'),
+(9,'Hibernate','hbm'),
+(10,'Oracle','ora'),
+(11,'MySQL','mysql'),
+(12,'YUI','yui'),
+(13,'JEE','jee'),
+(14,'Jakarta','jakarta'),
+(15,'IntelliJ IDEA','idea'),
+(16,'C++','cpp'),
+(17,'Perl','pl'),
+(18,'Rails','rails'),
+(19,'Maven','mvn'),
+(20,'Velocity','vm'),
+(21,'JUnit','junit'),
+(22,'TestNG','testng'),
+(23,'Struts','struts'),
+(24,'Tomcat','tom'),
+(25,'JBoss','jboss'),
+(26,'Groovy','groovy'),
+(27,'Regular Expression','regex'),
+(28,'Google App Engine','gae'),
+(29,'Eclipse','eclipse'),
+(30,'ActionScription','as'),
+(31,'C#','cs'),
+(32,'Bash','bash'),
+(33,'Sinatra','sinatra'),
+(34,'SQL','sql'),
+(35,'Linux','linux'),
+(36,'SQLite','sqlite'),
+(37,'XML','xml');
 
 
 
