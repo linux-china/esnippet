@@ -7,6 +7,7 @@
     <li>Name: ${snippet.name}</li>
     <li>Mnemonic: ${snippet.mnemonic}</li>
     <li>Language: ${languages[snippet.language]}</li>
+	<li>Added Date: ${snippet.createdAt}</li>
 </ul>
 <hr/>
 <a href="index.action">return to list</a>
