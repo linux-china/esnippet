@@ -8,6 +8,26 @@ function syntaxHighlighter() {
 }
 
 /**
+ * is numeric
+ * @param text {String} text
+ */
+function isNumeric(text)
+{
+    var ValidChars = "0123456789.";
+    var IsNumber = true;
+    var Char;
+    for (var i = 0; i < text.length && IsNumber; i++)
+    {
+        Char = text.charAt(i);
+        if (ValidChars.indexOf(Char) == -1)
+        {
+            IsNumber = false;
+        }
+    }
+    return IsNumber;
+}
+
+/**
  * display icon
  * @param name icon name
  */
@@ -207,6 +227,7 @@ Ext.extend(Repository.MenuPanel, Ext.Panel);
  * @param snippetTotal  snippet total
  */
 Repository.StatusBarPanel = function(snippetTotal) {
+    var self = this;
     var language = new Ext.Toolbar.TextItem("");
     var mnemonic = new Ext.Toolbar.TextItem('');
     var author = new Ext.Toolbar.TextItem('');
@@ -256,6 +277,23 @@ Repository.StatusBarPanel = function(snippetTotal) {
         Ext.fly(mnemonic.getEl()).update("Mnemonic: " + mnemonicText);
         Ext.fly(author.getEl()).update("Author: " + authorText);
     };
+
+    /**
+     * update status bar by snippet id
+     * @param snippetId snippet id
+     */
+    this.updateStatusBarBySnippetId = function(snippetId) {
+        Ext.Ajax.request({
+            url: '/snippet/show.json',
+            success:  function(response, opts) {
+                var snippet = Ext.decode(response.responseText).data;
+                if (snippet) {
+                    self.updateStatusBar(snippet.name, snippet.languageText, snippet.mnemonic, snippet.author)
+                }
+            },
+            params: { id: snippetId }
+        });
+    }
 };
 Ext.extend(Repository.StatusBarPanel, Ext.Panel);
 
@@ -285,6 +323,10 @@ Repository.SearchPanel = function(listPanel) {
     //fire event deal
     searchField.on("specialkey", function(field, event) {
         var keyword = field.getValue();
+        if (isNumeric(keyword)) {
+            Layout.getDetailTabPanel().refreshDetail(keyword);
+            Layout.getStatusBarPanel().updateStatusBarBySnippetId(keyword);
+        }
         listPanel.reloadByWord(keyword);
     });
 };
