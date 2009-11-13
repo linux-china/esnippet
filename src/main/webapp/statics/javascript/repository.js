@@ -369,7 +369,7 @@ Repository.ListPanel = function() {
             header:'Name',
             width:280,
             dataIndex:'name',
-            sortable:true
+            sortable:false
         }
     ];
     Repository.ListPanel.superclass.constructor.call(this, {
