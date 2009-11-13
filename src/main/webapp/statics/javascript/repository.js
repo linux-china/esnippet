@@ -386,7 +386,6 @@ Repository.ListPanel = function() {
              */
             var snippet = sm.getSelected().data;
             Layout.getStatusBarPanel().updateStatusBar(snippet.name, snippet.languageText, snippet.mnemonic, snippet.author);
-            //            Layout.getStatusBarPanel().updateStatusText("Mnemonic: " + snippet.mnemonic);
             Layout.getDetailTabPanel().refreshDetail(snippet.id);
         }
     });
