@@ -23,6 +23,7 @@ import org.mvnsearch.snippet.domain.manager.CategoryManager;
 import org.mvnsearch.snippet.domain.manager.SnippetManager;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * snippet domain action
@@ -130,6 +131,12 @@ public class SnippetQueryAction extends RichDomainQueryAction<Snippet> {
         } else { //query by word
             if (StringUtils.isEmpty(q)) { //RSS
                 snippets = snippetManager.findRecentAddedSnippets(40);
+            } else if (q.matches("\\d+")) {
+                Snippet snippet = snippetManager.findById(Integer.valueOf(q));
+                if (snippet != null) {
+                    snippets = new ArrayList<Snippet>();
+                    snippets.add(snippet);
+                }
             } else { //query by word
                 snippets = snippetManager.findSnippetsByWord(q);
             }
