@@ -184,11 +184,15 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
         String part = request.getParameter("part");
         String result = "plain_text";
         String content = "";
-        if ("code".equals(part)) {
-            content = snippet.getCode();
-            result = "code_part";
-        } else if ("example".equals(part)) {
-            content = snippet.getExample();
+        if (snippet != null) {
+            if ("code".equals(part)) {
+                content = snippet.getCode();
+                result = "code_part";
+            } else if ("example".equals(part)) {
+                content = snippet.getExample();
+            }
+        } else {
+            content = "Snippet Not Found!";
         }
         request.setAttribute("content", content);
         return result;
