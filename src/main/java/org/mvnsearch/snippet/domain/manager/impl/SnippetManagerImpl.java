@@ -63,7 +63,7 @@ public abstract class SnippetManagerImpl extends RichDomainManagerSupport<Snippe
     @SuppressWarnings({"unchecked"})
     public List<Snippet> findRecentAddedSnippets(int maxNum) {
         DetachedCriteria criteria = DetachedCriteria.forClass(getEntityClass());
-        criteria.addOrder(Order.desc("createdAt"));
+        criteria.addOrder(Order.desc("modifiedAt"));
         return getHibernateTemplate().findByCriteria(criteria, 0, maxNum);
     }
 
