@@ -326,8 +326,9 @@ Repository.SearchPanel = function(listPanel) {
         if (isNumeric(keyword)) {
             Layout.getDetailTabPanel().refreshDetail(keyword);
             Layout.getStatusBarPanel().updateStatusBarBySnippetId(keyword);
+        } else {
+            listPanel.reloadByWord(keyword);
         }
-        listPanel.reloadByWord(keyword);
     });
 };
 Ext.extend(Repository.SearchPanel, Ext.Panel);
