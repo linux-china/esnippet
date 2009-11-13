@@ -142,6 +142,8 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
      */
     @Override
     public String create() {
+        snippet.setCreatedAt(new DateTime());
+        snippet.setModifiedAt(new DateTime());
         snippet.save();
         return getAlternativeResult(POST_CREATE);
     }
@@ -153,6 +155,7 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
      */
     @Override
     public String update() {
+        snippet.setModifiedAt(new DateTime());
         snippet.save();
         return getAlternativeResult(POST_UPDATE);
     }
