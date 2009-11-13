@@ -124,6 +124,9 @@
                     <li>
                         &nbsp;&nbsp; 4. Project list added for alias.
                     </li>
+                    <li>
+                        &nbsp;&nbsp; 5. Snippet location: please input id to get snippet.
+                    </li>
                 </ul>
                 <p></p>
 
