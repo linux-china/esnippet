@@ -2,8 +2,8 @@
 <rss version="2.0" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
      xmlns:joda="http://www.joda.org/joda/time/tags">
     <channel>
-        <title>Book Shelf</title>
-        <description>Recent Added Books</description>
+        <title>Code Snippets</title>
+        <description>Recent Added Snippets</description>
         <copyright>MvnSearch</copyright>
         <generator>MvnSearch</generator>
         <!--@elvariable id="snippets" type="java.util.List<org.mvnsearch.snippet.domain.Snippet>"-->
