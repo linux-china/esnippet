@@ -32,7 +32,7 @@
         </action>
         <!--show rss 2.0-->
         <action name="showRss" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="showRss">
-            <result name="show_rss">/WEB-INF/pages/snippet/xml/rss20.jspx</result>
+            <result name="show_rss" type="dispatcher">/WEB-INF/pages/snippet/xml/rss20.jspx</result>
         </action>
         <!--query snippets-->
         <action name="query" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="query">
