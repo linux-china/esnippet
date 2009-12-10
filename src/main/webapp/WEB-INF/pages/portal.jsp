@@ -147,7 +147,7 @@
         </div>
     </div>
 </div>
-<div id="repository:header" style="height:50px">
+<div id="repository:header" style="height:50px; overflow:hidden;">
     <div id="header:logo">
         <img src="/statics/images/logo_small_w.gif" alt="Code Snippet Repository" align="left"/>
         <a href="http://docs.google.com/View?docid=dc73pj2h_79dbmmt4cx&hl=en_GB" target="_blank">
