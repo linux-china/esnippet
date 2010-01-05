@@ -127,6 +127,9 @@
                     <li>
                         &nbsp;&nbsp; 5. Snippet location: please input id to get snippet.
                     </li>
+                    <li>
+                        &nbsp;&nbsp; 6. Bash script to generate snippet: gsnippet.sh 138 > demo.rb
+                    </li>
                 </ul>
                 <p></p>
 
