@@ -1,3 +1,3 @@
 #!/bin/sh
-#operation gsnippet.sh 222 > demo.vm
-curl -s "http://www.mvnsearch.org/snippet/showPart.action?part=script&id=$1"
+#operation gsnippet.sh rb-demo > demo.rb
+curl -s "http://snippet.mvnsearch.org/snippet/showPart.action?part=script&mnemonic=$1"
