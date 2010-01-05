@@ -120,6 +120,7 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
      */
     public void prepare() throws Exception {
         if (mnemonic != null) {
+            mnemonic = mnemonic.trim();
             if (StringUtils.isNumeric(mnemonic)) {
                 id = Integer.parseInt(mnemonic);
             } else {
