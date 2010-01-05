@@ -193,6 +193,8 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
                 result = "code_part";
             } else if ("example".equals(part)) {
                 content = snippet.getExample();
+            } else if("script".equals(part)){
+                result="script";
             }
         } else {
             content = "Snippet Not Found!";
