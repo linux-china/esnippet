@@ -15,6 +15,7 @@
 
 package org.mvnsearch.snippet.web.actions.snippet;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.mvnsearch.ridd.struts2.RichDomainRestAction;
 import org.mvnsearch.snippet.domain.Snippet;
@@ -31,6 +32,7 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
     private static String COMMENT_LIST = "comment_list";
     private static String COMMENT_ADDED = "comment_added";
     private Integer id;
+    private String mnemonic;
     private Snippet snippet;
     private SnippetManager snippetManager;
     private List<Comment> comments; //snippet comments
@@ -76,6 +78,15 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
     }
 
     /**
+     * set mnemonic
+     *
+     * @param mnemonic mnemonic
+     */
+    public void setMnemonic(String mnemonic) {
+        this.mnemonic = mnemonic;
+    }
+
+    /**
      * get domain object
      *
      * @return domain object
@@ -108,12 +119,19 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
      * @throws Exception exception
      */
     public void prepare() throws Exception {
+        if (mnemonic != null) {
+            if (StringUtils.isNumeric(mnemonic)) {
+                id = Integer.parseInt(mnemonic);
+            } else {
+                snippet = snippetManager.findSnippetByMnemonic(mnemonic);
+            }
+        }
         if (id != null) {
             snippet = snippetManager.findById(id);
-            //crack for json output
-            if (request.getRequestURI().endsWith(".json")) {
-                snippet.convertUtf8ToIso();
-            }
+        }
+        //crack for json output        
+        if (snippet != null && request.getRequestURI().endsWith(".json")) {
+            snippet.convertUtf8ToIso();
         }
     }
 
@@ -193,8 +211,8 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
                 result = "code_part";
             } else if ("example".equals(part)) {
                 content = snippet.getExample();
-            } else if("script".equals(part)){
-                result="script";
+            } else if ("script".equals(part)) {
+                result = "script";
             }
         } else {
             content = "Snippet Not Found!";
