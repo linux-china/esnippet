@@ -137,6 +137,9 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
         if (snippet != null && request.getRequestURI().endsWith(".json")) {
             snippet.convertUtf8ToIso();
         }
+        if(snippet == null) {
+            snippet = snippetManager.construct();
+        }
     }
 
     /**
