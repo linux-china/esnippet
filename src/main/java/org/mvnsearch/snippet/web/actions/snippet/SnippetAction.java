@@ -16,6 +16,8 @@
 package org.mvnsearch.snippet.web.actions.snippet;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.mvnsearch.ridd.struts2.RichDomainRestAction;
 import org.mvnsearch.snippet.domain.Snippet;
@@ -29,6 +31,7 @@ import java.util.Map;
  * snippet domain action
  */
 public class SnippetAction extends RichDomainRestAction<Snippet> {
+    private Log log = LogFactory.getLog(SnippetAction.class);
     private static String COMMENT_LIST = "comment_list";
     private static String COMMENT_ADDED = "comment_added";
     private Integer id;
@@ -161,9 +164,13 @@ public class SnippetAction extends RichDomainRestAction<Snippet> {
      */
     @Override
     public String create() {
-        snippet.setCreatedAt(new DateTime());
-        snippet.setModifiedAt(new DateTime());
-        snippet.save();
+        try {
+            snippet.setCreatedAt(new DateTime());
+            snippet.setModifiedAt(new DateTime());
+            snippet.save();
+        } catch (Exception e) {
+            log.error("Create failed", e);
+        }
         return getAlternativeResult(POST_CREATE);
     }
 
