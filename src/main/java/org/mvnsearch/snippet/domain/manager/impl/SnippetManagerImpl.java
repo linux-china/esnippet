@@ -15,6 +15,7 @@
 
 package org.mvnsearch.snippet.domain.manager.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -22,9 +23,12 @@ import org.mvnsearch.ridd.domain.RichDomainManagerSupport;
 import org.mvnsearch.snippet.domain.Snippet;
 import org.mvnsearch.snippet.domain.extra.Comment;
 import org.mvnsearch.snippet.domain.manager.SnippetManager;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springmodules.cache.annotations.Cacheable;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,6 +153,41 @@ public abstract class SnippetManagerImpl extends RichDomainManagerSupport<Snippe
         DetachedCriteria criteria = DetachedCriteria.forClass(Comment.class);
         criteria.addOrder(Order.desc("id"));
         return getHibernateTemplate().findByCriteria(criteria, 0, count);
+    }
+
+    /**
+     * get popular tags
+     *
+     * @param count tag count
+     * @return tag statics
+     */
+    public Map<String, Integer> getPopularTags(Integer count) {
+        final Map<String, Integer> allTags = new HashMap<String, Integer>();
+        String SQLSelect = "select keywords from snippets where keywords is not null";
+        jdbcTemplate.query(SQLSelect, new ParameterizedRowMapper<Object>() {
+            public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+                String tags = resultSet.getString("keywords");
+                if (StringUtils.isNotBlank(tags)) {
+                    String[] parts = tags.split("[\\s;,]+");
+                    for (String part : parts) {
+                        Integer count = allTags.get(part);
+                        if (count != null) {
+                            allTags.put(part, count + 1);
+                        } else {
+                            allTags.put(part, 1);
+                        }
+                    }
+                }
+                return null;
+            }
+        });
+        Map<String, Integer> popularTags = new HashMap<String, Integer>();
+        for (Map.Entry<String, Integer> entry : allTags.entrySet()) {
+            if (entry.getValue() > count) {
+                popularTags.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return popularTags;
     }
 
     /**

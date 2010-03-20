@@ -86,4 +86,12 @@ public interface SnippetManager extends RichDomainManager<Snippet> {
      * @return comment list
      */
     public List<Comment> findRecentAddedComments(int count);
+
+    /**
+     * get popular tags
+     *
+     * @param count tag count
+     * @return tag statics
+     */
+    public Map<String, Integer> getPopularTags(Integer count);
 }
