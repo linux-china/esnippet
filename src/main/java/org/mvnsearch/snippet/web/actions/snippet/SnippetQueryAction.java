@@ -101,6 +101,16 @@ public class SnippetQueryAction extends RichDomainQueryAction<Snippet> {
     }
 
     /**
+     * popular contributor list
+     *
+     * @return contributor list
+     */
+    public String popularContributors() {
+        request.setAttribute("contributors", snippetManager.getPopularContributors(20));
+        return getAlternativeResult("contributor_list");
+    }
+
+    /**
      * show RSS
      *
      * @return rss result
