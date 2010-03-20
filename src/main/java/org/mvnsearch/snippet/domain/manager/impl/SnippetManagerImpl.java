@@ -191,6 +191,24 @@ public abstract class SnippetManagerImpl extends RichDomainManagerSupport<Snippe
     }
 
     /**
+     * get popular contributors, order by snippet count
+     *
+     * @param count max count
+     * @return contributor list
+     */
+    public List<Map<String, Object>> getPopularContributors(Integer count) {
+        String SQLSelect = "select count(*) as total, author from snippets  group by author order by total desc limit " + count;
+        return jdbcTemplate.query(SQLSelect, new ParameterizedRowMapper<Map<String, Object>>() {
+            public Map<String, Object> mapRow(ResultSet resultSet, int i) throws SQLException {
+                Map<String, Object> info = new HashMap<String, Object>();
+                info.put("author", resultSet.getString("author"));
+                info.put("count", resultSet.getInt("total"));
+                return info;
+            }
+        });
+    }
+
+    /**
      * get meta data
      *
      * @param type data type

@@ -94,4 +94,12 @@ public interface SnippetManager extends RichDomainManager<Snippet> {
      * @return tag statics
      */
     public Map<String, Integer> getPopularTags(Integer count);
+
+    /**
+     * get popular contributors, order by snippet count
+     *
+     * @param count max count
+     * @return contributor list
+     */
+    public List<Map<String,Object>> getPopularContributors(Integer count);
 }
