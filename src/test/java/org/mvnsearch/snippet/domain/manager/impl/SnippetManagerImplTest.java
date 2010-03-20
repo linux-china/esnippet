@@ -2,8 +2,10 @@ package org.mvnsearch.snippet.domain.manager.impl;
 
 import org.mvnsearch.snippet.AppBaseTest;
 import org.mvnsearch.snippet.domain.Snippet;
-import org.unitils.dbunit.annotation.DataSet;
+import org.mvnsearch.snippet.domain.manager.SnippetManager;
 import org.unitils.spring.annotation.SpringBean;
+
+import java.util.Map;
 
 /**
  * Snippet domain manager logic test case
@@ -12,7 +14,7 @@ import org.unitils.spring.annotation.SpringBean;
 public class SnippetManagerImplTest extends AppBaseTest {
     private Integer id = 1;
     @SpringBean("snippetManager")
-    private SnippetManagerImpl snippetManagerImpl;
+    private SnippetManager snippetManagerImpl;
 
     /**
      * domain create test
@@ -55,5 +57,15 @@ public class SnippetManagerImplTest extends AppBaseTest {
      */
     public void testRenderTemplate() throws Exception {
 
+    }
+
+    /**
+     * test to get popular tags
+     */
+    public void testGetPopularTags() {
+        Map<String, Integer> tags = snippetManagerImpl.getPopularTags(2);
+        for (Map.Entry<String, Integer> entry : tags.entrySet()) {
+            System.out.println(entry.getKey());
+        }
     }
 }
