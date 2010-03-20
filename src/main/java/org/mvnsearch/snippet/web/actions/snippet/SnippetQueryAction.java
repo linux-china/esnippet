@@ -22,8 +22,8 @@ import org.mvnsearch.snippet.domain.Snippet;
 import org.mvnsearch.snippet.domain.manager.CategoryManager;
 import org.mvnsearch.snippet.domain.manager.SnippetManager;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * snippet domain action
@@ -96,6 +96,7 @@ public class SnippetQueryAction extends RichDomainQueryAction<Snippet> {
      * @return tag cloud result
      */
     public String tagCloud() {
+        request.setAttribute("tags", snippetManager.getPopularTags(2));
         return "tag_cloud";
     }
 
