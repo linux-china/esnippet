@@ -5,6 +5,7 @@ import org.mvnsearch.snippet.domain.Snippet;
 import org.mvnsearch.snippet.domain.manager.SnippetManager;
 import org.unitils.spring.annotation.SpringBean;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -67,5 +68,16 @@ public class SnippetManagerImplTest extends AppBaseTest {
         for (Map.Entry<String, Integer> entry : tags.entrySet()) {
             System.out.println(entry.getKey());
         }
+    }
+
+    /**
+     * test to get popular contributors
+     */
+    public void testGetPopularContributors() {
+        List<Map<String, Object>> statics = snippetManagerImpl.getPopularContributors(5);
+        for (Map<String, Object> info : statics) {
+            System.out.println(info.get("contributor"));
+        }
+        
     }
 }
