@@ -131,6 +131,12 @@
                     <li>
                         &nbsp;&nbsp; 6. Bash script to generate snippet: gsnippet.sh 138 > demo.rb
                     </li>
+                    <li>
+                        &nbsp;&nbsp; 7. Contributor list added.
+                    </li>
+                    <li>
+                        &nbsp;&nbsp; 8. Tag cloud auto extracted.
+                    </li>
                 </ul>
                 <p></p>
 
