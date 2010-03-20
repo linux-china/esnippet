@@ -30,6 +30,10 @@
         <action name="tagCloud" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="tagCloud">
             <result name="tag_cloud" type="dispatcher">/WEB-INF/pages/snippet/tag_cloud.jsp</result>
         </action>
+        <!--tag cloud action-->
+        <action name="popularContributors" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="popularContributors">
+            <result name="contributor_list_json">/WEB-INF/pages/snippet/json/contributor_list.jsp</result>
+        </action>
         <!--show rss 2.0-->
         <action name="showRss" class="org.mvnsearch.snippet.web.actions.snippet.SnippetQueryAction" method="showRss">
             <result name="show_rss" type="dispatcher">/WEB-INF/pages/snippet/xml/rss20.jspx</result>
