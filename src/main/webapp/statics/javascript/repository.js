@@ -98,6 +98,7 @@ Ext.extend(Repository.CodePanel, Ext.Panel);
 
 /**
  * category tree panel
+ * @class Repository.CategoryTreePanel
  * @param listPanel {Repository.ListPanel}  list panel
  */
 Repository.CategoryTreePanel = function(listPanel) {
@@ -163,7 +164,11 @@ Repository.CategoryTreePanel = function(listPanel) {
 };
 Ext.extend(Repository.CategoryTreePanel, Ext.tree.TreePanel);
 
-//tag cloud panel
+/**
+ * tag cloud panel
+ *
+ * @class  Repository.TagCloudPanel
+ */
 Repository.TagCloudPanel = function() {
     Repository.TagCloudPanel.superclass.constructor.call(this, {
         id: 'repository:tagCloudPanel',
@@ -190,6 +195,7 @@ Ext.extend(Repository.TagCloudPanel, Ext.Panel);
 
 /**
  * navigation menu panel
+ * @class Repository.MenuPanel
  * @param listPanel   {Repository.ListPanel} list panel
  */
 Repository.MenuPanel = function(listPanel) {
@@ -200,6 +206,8 @@ Repository.MenuPanel = function(listPanel) {
     var tagCloudPanel = new Repository.TagCloudPanel();
     //project list panel
     var projectListPanel = new Repository.ProjectListPanel();
+    //contributor list panel
+    var contributorListPanel = new Repository.ContributorListPanel();
     Repository.MenuPanel.superclass.constructor.call(this, {
         region:'west',
         el: 'repository:menu',
@@ -217,13 +225,14 @@ Repository.MenuPanel = function(listPanel) {
         layoutConfig:{
             animate:true
         },
-        items:[categoryTree, projectListPanel, tagCloudPanel]
+        items:[categoryTree, contributorListPanel, projectListPanel,tagCloudPanel]
     });
 };
 Ext.extend(Repository.MenuPanel, Ext.Panel);
 
 /**
  * status bar
+ * @class  Repository.StatusBarPanel
  * @param snippetTotal  snippet total
  */
 Repository.StatusBarPanel = function(snippetTotal) {
@@ -335,7 +344,7 @@ Ext.extend(Repository.SearchPanel, Ext.Panel);
 
 /**
  * header panel
- *
+ * @class Repository.HeaderPanel
  * @param listPanel {Repository.ListPanel} grid list panel
  */
 Repository.HeaderPanel = function(listPanel) {
@@ -364,6 +373,8 @@ Ext.extend(Repository.HeaderPanel, Ext.Panel);
 
 /**
  * snippet list panel
+ *
+ * @class Repository.ListPanel
  */
 Repository.ListPanel = function() {
     var paramName = "";
@@ -485,7 +496,7 @@ Ext.extend(Repository.ListPanel, Ext.grid.GridPanel);
 
 /**
  * project list panel
- * @class ProjectListPanel
+ * @class Repository.ProjectListPanel
  */
 Repository.ProjectListPanel = function() {
     var sm = new Ext.grid.RowSelectionModel({singleSelect:true});
@@ -534,6 +545,57 @@ Repository.ProjectListPanel = function() {
 
 };
 Ext.extend(Repository.ProjectListPanel, Ext.grid.GridPanel);
+
+/**
+ * contributor list panel
+ * @class Repository.ContributorListPanel
+ */
+Repository.ContributorListPanel = function() {
+    var sm = new Ext.grid.RowSelectionModel({singleSelect:true});
+    this.store = new Ext.data.JsonStore({
+        url: '/snippet/popularContributors.json',
+        id: 'id',
+        fields: [
+            {
+                name: 'id'
+            },
+            {
+                name: 'author',
+                type: 'string'
+            },
+            {
+                name: 'count'
+            }
+        ],
+        autoLoad: true
+    });
+    this.columns = [
+        {
+            header:'Author',
+            width:120,
+            dataIndex:'author',
+            sortable:true
+        },
+        {
+            header:'Count',
+            width:70,
+            dataIndex:'count',
+            sortable:true
+        }
+    ];
+    Repository.ContributorListPanel.superclass.constructor.call(this, {
+        id: 'repository:contributorPanel',
+        el:'repository:contributorPanel',
+        title:'Contributors',
+        sm: sm,
+        store: this.store,
+        iconCls:'peopleIcon',
+        autoScroll:true,
+        viewConfig: new Ext.grid.GridView({emptyText:'No Contributor Found!'})
+    });
+
+};
+Ext.extend(Repository.ContributorListPanel, Ext.grid.GridPanel);
 
 /**
  * snippet edit form window
@@ -816,6 +878,8 @@ Ext.extend(Repository.SnippetFormWindow, Ext.Window);
 
 /**
  * snippet comment panel
+ *
+ * @class  Repository.CommentPanel
  */
 Repository.CommentPanel = function () {
     var ds = new Ext.data.JsonStore({
