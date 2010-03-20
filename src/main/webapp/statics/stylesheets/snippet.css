@@ -14,6 +14,9 @@
 .tagIcon {
     background-image: url(/statics/images/tag.png) !important;
 }
+.peopleIcon {
+    background-image: url(/statics/images/people.png) !important;
+}
 
 .comment-item {
     font: normal 12px tahoma, arial, helvetica, sans-serif;
