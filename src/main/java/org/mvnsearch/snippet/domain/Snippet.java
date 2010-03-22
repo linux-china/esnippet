@@ -443,7 +443,7 @@ public class Snippet extends RichDomainSupport {
      * @param text text
      * @return converted text
      */
-    private String convertUtf8ToIso(String text) {
+    public static String convertUtf8ToIso(String text) {
         if (StringUtils.isEmpty(text)) return text;
         try {
             return new String(text.getBytes("utf-8"), "iso-8859-1");
