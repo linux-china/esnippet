@@ -41,13 +41,15 @@ var original_column = doc.currentColumnNum + current_column_offset;
 
 // If no text is currently selected, select the word under the cursor.
 if (! doc.isSel()) {
-    doc.selectWord();
+    doc.selectLine();
+    var selection = UltraEdit.activeDocument.selection.replace(/^[\s\t\n]+/m, '').replace(/[\s\t\n]+$/m, '')
+//    UltraEdit.outputWindow.write("titl = " + selection);
     // If selectWord() didn't select anything, try CTRL+SHIFT+LEFT ARROW.
-    if (! doc.isSel()) {
+
         doc.startSelect();
-        doc.key('CTRL+LEFT ARROW');
+         doc.key('CTRL+LEFT ARROW');
         doc.endSelect();
-    }
+       UltraEdit.outputWindow.write("titl = " + doc.selection);
 }
 
 // Try to get a snippet from the list that matches the selected text.
