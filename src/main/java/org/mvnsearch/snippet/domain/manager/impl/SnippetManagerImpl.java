@@ -201,7 +201,8 @@ public abstract class SnippetManagerImpl extends RichDomainManagerSupport<Snippe
         return jdbcTemplate.query(SQLSelect, new ParameterizedRowMapper<Map<String, Object>>() {
             public Map<String, Object> mapRow(ResultSet resultSet, int i) throws SQLException {
                 Map<String, Object> info = new HashMap<String, Object>();
-                info.put("author", resultSet.getString("author"));
+                String author = resultSet.getString("author");
+                info.put("author", Snippet.convertUtf8ToIso(author));
                 info.put("count", resultSet.getInt("total"));
                 return info;
             }
