@@ -128,11 +128,6 @@
             <artifactId>struts2-config-browser-plugin</artifactId>
             <version>2.0.14</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.jsonplugin</groupId>
-            <artifactId>jsonplugin</artifactId>
-            <version>0.31</version>
-        </dependency>
         <!--Springframework related-->
         <dependency>
             <groupId>org.springframework</groupId>
