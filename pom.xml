@@ -455,7 +455,7 @@
     <repositories>
         <repository>
             <id>mvnsearch</id>
-            <url>team.mvnsearch.org/nexus/content/groups/public/</url>
+            <url>http://nexus.mvnsearch.org/content/groups/public/</url>
         </repository>
         <repository>
             <id>jboss</id>
